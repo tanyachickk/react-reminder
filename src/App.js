@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import { MainLayout } from './components/MainLayout';
+import { Header } from './components/Header';
+import { Sidebar } from './components/Sidebar';
+import { MainView } from './components/MainView';
+import { MyThemeProvider } from './context/themeContext';
+import { SelectedProjectProvider, ProjectsProvider } from './context';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const App = () => (
+  <MyThemeProvider>
+    <SelectedProjectProvider>
+      <ProjectsProvider>
+        <MainLayout header={<Header />} sidebar={<Sidebar />} content={<MainView />} />
+      </ProjectsProvider>
+    </SelectedProjectProvider>
+  </MyThemeProvider>
+);
 
 export default App;
