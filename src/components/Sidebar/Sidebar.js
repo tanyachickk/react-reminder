@@ -1,40 +1,43 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withTheme } from 'styled-components';
-import { Projects } from '../Projects';
-import { FaChevronDown, FaInbox, FaRegCalendarAlt, FaRegCalendar } from 'react-icons/fa';
-import { useSelectedProjectValue } from '../../context';
-import { useTheme } from '../../context/themeContext';
-import { Container } from './Sidebar.styled';
+import { IoIosAddCircle } from 'react-icons/io';
+import { Logo } from '../Logo';
+import {
+  Container,
+  LogoLink,
+  SearchInputContainer,
+  TextDivider,
+  TaskGroupListContainer,
+  AddButton,
+  AddButtonText,
+  ProfileContainer,
+} from './Sidebar.styled';
+import { TaskCategories } from '../TaskCategories';
+import { TaskGroupList } from '../TaskGroupList';
+import SearchInput from '../SearchInput/SearchInput';
+import { ProfileInfo } from '../ProfileInfo';
 
-const Sidebar = ({ theme }) => {
-  const themeToggle = useTheme();
-  const { setSelectedProject } = useSelectedProjectValue;
-  const [active, setActive] = useState('INBOX');
-  const [showProjects, setShowProjects] = useState(true);
-
+const Sidebar = () => {
   return (
     <Container>
-      <ul className="sidebar__generic">
-        <li>
-          <FaInbox />
-          <span>Inbox</span>
-        </li>
-        <li>
-          <FaRegCalendar />
-          <span>Today</span>
-        </li>
-        <li>
-          <FaRegCalendarAlt />
-          <span>Next 7 days</span>
-        </li>
-      </ul>
-      <div className="sidebar__middle">
-        <span>
-          <FaChevronDown />
-        </span>
-        <h2>Projects</h2>
-      </div>
-      <ul className="sidebar__projects">{showProjects && <Projects />}</ul>
+      <LogoLink href="/">
+        <Logo />
+      </LogoLink>
+      <SearchInputContainer>
+        <SearchInput />
+      </SearchInputContainer>
+      <TaskCategories />
+      <TextDivider>My lists</TextDivider>
+      <TaskGroupListContainer>
+        <TaskGroupList />
+      </TaskGroupListContainer>
+      {/* <AddButton>
+        <IoIosAddCircle />
+        <AddButtonText>Add new list</AddButtonText>
+      </AddButton> */}
+      <ProfileContainer>
+        <ProfileInfo></ProfileInfo>
+      </ProfileContainer>
     </Container>
   );
 };

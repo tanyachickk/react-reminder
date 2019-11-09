@@ -4,7 +4,6 @@ import { Container, HeaderWrapper, SidebarWrapper, ContentWrapper } from './Main
 export const MainLayout = ({ header, sidebar, content }) => {
   return (
     <Container>
-      <HeaderWrapper>{header}</HeaderWrapper>
       <SidebarWrapper>{sidebar}</SidebarWrapper>
       <ContentWrapper>{content}</ContentWrapper>
     </Container>

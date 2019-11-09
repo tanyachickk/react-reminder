@@ -1,5 +1,4 @@
 @import-normalize;
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap');
 
 * {
   box-sizing: border-box;
@@ -14,7 +13,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.25;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   color: #202020;
   background-color: #fafafa;
   -webkit-font-smoothing: antialiased;

@@ -5,7 +5,7 @@ import { collatedTasksExists } from '../helpers';
 
 const USER_ID = 'MjWY4LO4vInX9OxXMjSO';
 
-export const useTasks = (selectedProject) => {
+export const useTasks = selectedGroup => {
   const [tasks, setTasks] = useState([]);
   const [archivedTasks, setArchivedTasks] = useState([]);
 
@@ -16,55 +16,55 @@ export const useTasks = (selectedProject) => {
       .where('userId', '==', USER_ID);
 
     unsubscribe =
-      selectedProject && !collatedTasksExists(selectedProject)
-        ? (unsubscribe = unsubscribe.where('projectId', '==', selectedProject))
-        : selectedProject === 'TODAY'
+      selectedGroup && !collatedTasksExists(selectedGroup)
+        ? (unsubscribe = unsubscribe.where('groupId', '==', selectedGroup))
+        : selectedGroup === 'TODAY'
         ? (unsubscribe = unsubscribe.where('date', '==', moment().format('DD/MM/YYYY')))
-        : selectedProject === 'INBOX' || selectedProject === 0
+        : selectedGroup === 'INBOX' || selectedGroup === 0
         ? (unsubscribe = unsubscribe.where('date', '==', ''))
         : unsubscribe;
 
-    unsubscribe = unsubscribe.onSnapshot((snapshot) => {
-      const newTasks = snapshot.docs.map((task) => ({ ...task.data(), id: task }));
+    unsubscribe = unsubscribe.onSnapshot(snapshot => {
+      const newTasks = snapshot.docs.map(task => ({ ...task.data(), id: task }));
 
       setTasks(
-        selectedProject === 'NEXT_7'
+        selectedGroup === 'NEXT_WEEK'
           ? newTasks.filter(
-              (task) => moment(task.date, 'DD-MM-YYYY').diff(moment(), 'days') <= 7 && task.archived !== true,
+              task => moment(task.date, 'DD-MM-YYYY').diff(moment(), 'days') <= 7 && task.archived !== true,
             )
-          : newTasks.filter((task) => task.archived !== true),
+          : newTasks.filter(task => task.archived !== true),
       );
 
-      setArchivedTasks(newTasks.filter((task) => task.archived !== false));
+      setArchivedTasks(newTasks.filter(task => task.archived !== false));
     });
 
     return () => unsubscribe();
-  }, [selectedProject]);
+  }, [selectedGroup]);
 
   return { tasks, archivedTasks };
 };
 
-export const useProjects = () => {
-  const [projects, setProjects] = useState([]);
+export const useGroups = () => {
+  const [groups, setGroups] = useState([]);
 
   useEffect(() => {
     firebase
       .firestore()
-      .collection('projects')
+      .collection('groups')
       .where('userId', '==', USER_ID)
-      .orderBy('projectId')
+      .orderBy('groupId')
       .get()
-      .then((snapshot) => {
-        const allProjects = snapshot.docs.map((project) => ({
-          ...project.data(),
-          docId: project.id,
+      .then(snapshot => {
+        const allGroups = snapshot.docs.map(group => ({
+          ...group.data(),
+          docId: group.id,
         }));
 
-        if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
-          setProjects(allProjects);
+        if (JSON.stringify(allGroups) !== JSON.stringify(groups)) {
+          setGroups(allGroups);
         }
       });
-  }, [projects]);
+  }, [groups]);
 
-  return { projects, setProjects };
+  return { groups, setGroups };
 };

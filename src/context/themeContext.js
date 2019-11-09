@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { backgroundColor, textColor } from '../constants/theme';
+import { backgroundColor, primaryTextColor } from '../constants/theme';
 
 const ThemeToggleContext = createContext();
 
@@ -14,7 +14,7 @@ export const MyThemeProvider = ({ children }) => {
   const Wrapper = styled.div`
     height: 100%;
     background-color: ${backgroundColor};
-    color: ${textColor};
+    color: ${primaryTextColor};
   `;
 
   const toggle = () => {

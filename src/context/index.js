@@ -1,11 +1,11 @@
-import { ProjectsContext, ProjectsProvider, useProjectsValue } from './projectsContext';
-import { SelectedProjectContext, SelectedProjectProvider, useSelectedProjectValue } from './selectedProjectsContext';
+import { GroupsContext, GroupsProvider, useGroupsValue } from './groupsContext';
+import { SelectedGroupContext, SelectedGroupProvider, useSelectedGroupValue } from './selectedGroupsContext';
 
 export {
-  ProjectsContext,
-  ProjectsProvider,
-  useProjectsValue,
-  SelectedProjectContext,
-  SelectedProjectProvider,
-  useSelectedProjectValue,
+  GroupsContext,
+  GroupsProvider,
+  useGroupsValue,
+  SelectedGroupContext,
+  SelectedGroupProvider,
+  useSelectedGroupValue,
 };

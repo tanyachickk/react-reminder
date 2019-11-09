@@ -9,23 +9,17 @@ const Header = ({ theme }) => {
 
   return (
     <Container>
-      <nav>
-        <div className="logo">
-          <img src="/images/logo.png" alt="Reminder" />
-        </div>
-        <div className="settings">
-          <ul>
-            <li>
-              <button onClick={() => themeToggle.toggle()}>
-                {theme.mode === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              </button>
-            </li>
-            <li>
-              <FaPalette />
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <input placeholder="Search Task" />
+      <ul>
+        <li>
+          <button onClick={() => themeToggle.toggle()}>
+            {theme.mode === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          </button>
+        </li>
+        <li>
+          <FaPalette />
+        </li>
+      </ul>
     </Container>
   );
 };

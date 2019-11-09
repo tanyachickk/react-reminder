@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { backgroundColor, textColor } from '../../constants/theme';
+import { headerBackgroundColor } from '../../constants/theme';
 
 export const Container = styled.header`
-  background: ${backgroundColor};
-  color: ${textColor};
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: ${headerBackgroundColor};
 `;
