@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import moment from 'moment';
-import { firebase } from '../firebase';
-import { collatedTasksExists } from '../helpers';
-
-const USER_ID = 'MjWY4LO4vInX9OxXMjSO';
+import { useState, useEffect } from "react";
+import moment from "moment";
+import { firebase } from "../firebase";
+import { collatedTasksExists } from "../helpers";
+import { USER_ID } from "../constants/values";
 
 export const useTasks = selectedGroup => {
   const [tasks, setTasks] = useState([]);
@@ -12,27 +11,36 @@ export const useTasks = selectedGroup => {
   useEffect(() => {
     let unsubscribe = firebase
       .firestore()
-      .collection('tasks')
-      .where('userId', '==', USER_ID);
+      .collection("tasks")
+      .where("userId", "==", USER_ID);
 
     unsubscribe =
       selectedGroup && !collatedTasksExists(selectedGroup)
-        ? (unsubscribe = unsubscribe.where('groupId', '==', selectedGroup))
-        : selectedGroup === 'TODAY'
-        ? (unsubscribe = unsubscribe.where('date', '==', moment().format('DD/MM/YYYY')))
-        : selectedGroup === 'INBOX' || selectedGroup === 0
-        ? (unsubscribe = unsubscribe.where('date', '==', ''))
+        ? (unsubscribe = unsubscribe.where("groupId", "==", selectedGroup))
+        : selectedGroup === "TODAY"
+        ? (unsubscribe = unsubscribe.where(
+            "date",
+            "==",
+            moment().format("DD/MM/YYYY")
+          ))
+        : selectedGroup === "INBOX" || selectedGroup === 0
+        ? (unsubscribe = unsubscribe.where("date", "==", ""))
         : unsubscribe;
 
     unsubscribe = unsubscribe.onSnapshot(snapshot => {
-      const newTasks = snapshot.docs.map(task => ({ ...task.data(), id: task }));
+      const newTasks = snapshot.docs.map(task => ({
+        ...task.data(),
+        id: task
+      }));
 
       setTasks(
-        selectedGroup === 'NEXT_WEEK'
+        selectedGroup === "NEXT_WEEK"
           ? newTasks.filter(
-              task => moment(task.date, 'DD-MM-YYYY').diff(moment(), 'days') <= 7 && task.archived !== true,
+              task =>
+                moment(task.date, "DD-MM-YYYY").diff(moment(), "days") <= 7 &&
+                task.archived !== true
             )
-          : newTasks.filter(task => task.archived !== true),
+          : newTasks.filter(task => task.archived !== true)
       );
 
       setArchivedTasks(newTasks.filter(task => task.archived !== false));
@@ -50,14 +58,14 @@ export const useGroups = () => {
   useEffect(() => {
     firebase
       .firestore()
-      .collection('groups')
-      .where('userId', '==', USER_ID)
-      .orderBy('groupId')
+      .collection("groups")
+      .where("userId", "==", USER_ID)
+      .orderBy("groupId")
       .get()
       .then(snapshot => {
         const allGroups = snapshot.docs.map(group => ({
           ...group.data(),
-          docId: group.id,
+          docId: group.id
         }));
 
         if (JSON.stringify(allGroups) !== JSON.stringify(groups)) {

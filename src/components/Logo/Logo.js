@@ -1,9 +1,15 @@
-import React from 'react';
-import { withTheme } from 'styled-components';
-import { Text } from './Logo.styled';
+import React from "react";
+import { withTheme } from "styled-components";
+import { Container, Text, Image } from "./Logo.styled";
+import * as LogoImage from "../../assets/images/reminders-logo.png";
 
-const Logo = ({ theme }) => {
-  return <Text>React Reminders</Text>;
+const Logo = () => {
+  return (
+    <Container>
+      <Image src={LogoImage} />
+      <Text>React Reminders</Text>
+    </Container>
+  );
 };
 
 export default withTheme(Logo);

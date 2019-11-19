@@ -1,1 +1,2 @@
-export { TaskGroupList } from './TaskGroupList';
+import TaskGroupList from "./TaskGroupList";
+export { TaskGroupList };

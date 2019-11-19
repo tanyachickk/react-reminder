@@ -1,21 +1,18 @@
-import React from 'react';
-import { withTheme } from 'styled-components';
-import { IoIosAddCircle } from 'react-icons/io';
-import { Logo } from '../Logo';
+import React from "react";
+import { withTheme } from "styled-components";
+import { Logo } from "../Logo";
 import {
   Container,
   LogoLink,
   SearchInputContainer,
   TextDivider,
   TaskGroupListContainer,
-  AddButton,
-  AddButtonText,
-  ProfileContainer,
-} from './Sidebar.styled';
-import { TaskCategories } from '../TaskCategories';
-import { TaskGroupList } from '../TaskGroupList';
-import SearchInput from '../SearchInput/SearchInput';
-import { ProfileInfo } from '../ProfileInfo';
+  ProfileContainer
+} from "./Sidebar.styled";
+import { TaskCategories } from "../TaskCategories";
+import { TaskGroupList } from "../TaskGroupList";
+import SearchInput from "../SearchInput/SearchInput";
+import { ProfileInfo } from "../ProfileInfo";
 
 const Sidebar = () => {
   return (
@@ -31,10 +28,6 @@ const Sidebar = () => {
       <TaskGroupListContainer>
         <TaskGroupList />
       </TaskGroupListContainer>
-      {/* <AddButton>
-        <IoIosAddCircle />
-        <AddButtonText>Add new list</AddButtonText>
-      </AddButton> */}
       <ProfileContainer>
         <ProfileInfo></ProfileInfo>
       </ProfileContainer>

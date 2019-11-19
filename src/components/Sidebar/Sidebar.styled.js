@@ -1,6 +1,11 @@
-import styled from 'styled-components';
-import { primaryTextColor, sidebarBackgroundColor, borderColor, secondaryTextColor } from '../../constants/theme';
-import { headerHeight } from '../../constants/sizes';
+import styled from "styled-components";
+import {
+  primaryTextColor,
+  sidebarBackgroundColor,
+  borderColor,
+  secondaryTextColor
+} from "../../constants/theme";
+import { headerHeight } from "../../constants/sizes";
 
 export const Container = styled.div`
   display: flex;
@@ -9,6 +14,7 @@ export const Container = styled.div`
   height: 100%;
   background-color: ${sidebarBackgroundColor};
   border-right: 1px solid ${borderColor};
+  overflow: hidden;
 `;
 
 export const LogoLink = styled.a`
@@ -27,6 +33,7 @@ export const SearchInputContainer = styled.div`
 `;
 
 export const ProfileContainer = styled.button`
+  margin-top: auto;
   background-color: transparent;
   border: none;
   outline: none;
@@ -41,28 +48,6 @@ export const TextDivider = styled.div`
 `;
 
 export const TaskGroupListContainer = styled.div`
-  flex-grow: 1;
   overflow-x: hidden;
   overflow-y: auto;
-`;
-
-export const AddButton = styled.button`
-  display: flex;
-  align-items: center;
-  margin-top: auto;
-  padding: 0.5rem 1rem;
-  background-color: transparent;
-  color: ${primaryTextColor};
-  font-size: 1rem;
-  border: none;
-  transition: opacity 0.2s ease;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.7;
-  }
-`;
-
-export const AddButtonText = styled.span`
-  margin-left: 0.5rem;
 `;

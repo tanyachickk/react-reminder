@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { borderColor } from '../../constants/theme';
+import styled from "styled-components";
+import { borderColor } from "../../constants/theme";
 
 export const Container = styled.div`
   padding: 0 1rem 1rem;
@@ -17,5 +17,5 @@ export const PageHeader = styled.div`
 
 export const PageTitle = styled.h2`
   font-size: 2rem;
-  margin: 1.75rem 0 1rem;
+  margin: 1.75rem 0 0.25rem;
 `;
