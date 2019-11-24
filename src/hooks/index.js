@@ -56,22 +56,22 @@ export const useGroups = () => {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    firebase
+    let unsubscribe = firebase
       .firestore()
       .collection("groups")
-      .where("userId", "==", USER_ID)
-      .orderBy("groupId")
-      .get()
-      .then(snapshot => {
-        const allGroups = snapshot.docs.map(group => ({
-          ...group.data(),
-          docId: group.id
-        }));
+      .where("userId", "==", USER_ID);
 
-        if (JSON.stringify(allGroups) !== JSON.stringify(groups)) {
-          setGroups(allGroups);
-        }
-      });
+    unsubscribe = unsubscribe.onSnapshot(snapshot => {
+      const allGroups = snapshot.docs.map(group => ({
+        ...group.data(),
+        docId: group.id
+      }));
+
+      if (JSON.stringify(allGroups) !== JSON.stringify(groups)) {
+        setGroups(allGroups);
+      }
+    });
+    return () => unsubscribe();
   }, [groups]);
 
   return { groups, setGroups };

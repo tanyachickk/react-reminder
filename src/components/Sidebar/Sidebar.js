@@ -14,7 +14,7 @@ import { TaskGroupList } from "../TaskGroupList";
 import SearchInput from "../SearchInput/SearchInput";
 import { ProfileInfo } from "../ProfileInfo";
 
-const Sidebar = () => {
+const Sidebar = ({ onUserInfoClick }) => {
   return (
     <Container>
       <LogoLink href="/">
@@ -28,7 +28,7 @@ const Sidebar = () => {
       <TaskGroupListContainer>
         <TaskGroupList />
       </TaskGroupListContainer>
-      <ProfileContainer>
+      <ProfileContainer onClick={onUserInfoClick}>
         <ProfileInfo></ProfileInfo>
       </ProfileContainer>
     </Container>

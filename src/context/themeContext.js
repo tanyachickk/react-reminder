@@ -1,6 +1,6 @@
-import React, { createContext, useContext } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { backgroundColor, primaryTextColor } from '../constants/theme';
+import React, { createContext, useContext } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { backgroundColor, primaryTextColor } from "../constants/theme";
 
 const ThemeToggleContext = createContext();
 
@@ -8,7 +8,7 @@ export const useTheme = () => useContext(ThemeToggleContext);
 
 export const MyThemeProvider = ({ children }) => {
   const [themeState, setThemeState] = React.useState({
-    mode: 'light',
+    mode: "light"
   });
 
   const Wrapper = styled.div`
@@ -18,7 +18,7 @@ export const MyThemeProvider = ({ children }) => {
   `;
 
   const toggle = () => {
-    const mode = themeState.mode === 'light' ? `dark` : `light`;
+    const mode = themeState.mode === "light" ? `dark` : `light`;
     setThemeState({ mode: mode });
   };
 
@@ -26,7 +26,7 @@ export const MyThemeProvider = ({ children }) => {
     <ThemeToggleContext.Provider value={{ toggle: toggle }}>
       <ThemeProvider
         theme={{
-          mode: themeState.mode,
+          mode: themeState.mode
         }}
       >
         <Wrapper>{children}</Wrapper>
@@ -34,5 +34,3 @@ export const MyThemeProvider = ({ children }) => {
     </ThemeToggleContext.Provider>
   );
 };
-
-export default ThemeProvider;

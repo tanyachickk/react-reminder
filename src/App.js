@@ -1,20 +1,31 @@
-import React from 'react';
-import { MainLayout } from './components/MainLayout';
-import { Header } from './components/Header';
-import { Sidebar } from './components/Sidebar';
-import { MainView } from './components/MainView';
-import { MyThemeProvider } from './context/themeContext';
-import { SelectedGroupProvider, GroupsProvider } from './context';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+import { LoginPage } from "./components/LoginPage";
+import { InnerPage } from "./components/InnerPage";
+import "./App.css";
+import { UserProvider } from "./context/UserContext";
 
-export const App = () => (
-  <SelectedGroupProvider>
-    <GroupsProvider>
-      <MyThemeProvider>
-        <MainLayout header={<Header />} sidebar={<Sidebar />} content={<MainView />} />
-      </MyThemeProvider>
-    </GroupsProvider>
-  </SelectedGroupProvider>
-);
+export const App = () => {
+  return (
+    <UserProvider>
+      <Router>
+        <Switch>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+          <Route exact path="/">
+            <InnerPage />
+          </Route>
+          <Redirect to={{ pathname: "/" }}></Redirect>
+        </Switch>
+      </Router>
+    </UserProvider>
+  );
+};
 
 export default App;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, HeaderWrapper, SidebarWrapper, ContentWrapper } from './MainLayout.styled';
+import React from "react";
+import { Container, SidebarWrapper, ContentWrapper } from "./MainLayout.styled";
 
 export const MainLayout = ({ header, sidebar, content }) => {
   return (

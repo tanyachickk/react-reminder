@@ -9,6 +9,7 @@
     "react-dom": "^16.11.0",
     "react-icons": "^3.8.0",
     "react-page-click": "^4.0.4",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-scroll-to": "^3.0.0-beta.3",
     "styled-components": "^4.4.1",
