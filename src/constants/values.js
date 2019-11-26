@@ -5,8 +5,6 @@ import {
   IoIosArchive
 } from "react-icons/io";
 
-export const USER_ID = "MjWY4LO4vInX9OxXMjSO";
-
 export const collatedTasks = [
   { key: "TODAY", name: "Today", icon: IoIosCalendar },
   { key: "NEXT_WEEK", name: "Next week", icon: IoIosCalendar },

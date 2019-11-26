@@ -1,30 +1,45 @@
-import React from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
-import { useGroupsValue, useSelectedGroupValue } from '../../context';
-import { firebase } from '../../firebase';
-import { Container, ColoredDot, TaskName, DeleteButton } from './TaskGroupItem.styled';
+import React, { useRef, useState } from "react";
+import { FaTrashAlt } from "react-icons/fa";
+import { useSelectedGroupValue } from "../../context/selectedGroupContext";
+import { firebase } from "../../firebase";
+import {
+  Container,
+  ColoredDot,
+  TaskName,
+  DeleteButton
+} from "./TaskGroupItem.styled";
+import { getEventPath } from "../../helpers";
 
-export const TaskGroupItem = ({ group }) => {
-  const { groups, setGroups } = useGroupsValue();
-  const { setSelectedGroup } = useSelectedGroupValue();
+export const TaskGroupItem = ({ group, onSelect }) => {
+  const [isEditMode, setIsEditMode] = useState(false);
+  const deleteButtonRef = useRef();
+  const { selectedGroup, setSelectedGroup } = useSelectedGroupValue();
 
-  const deleteGroup = docId => {
+  const onClick = e => {
+    const path = getEventPath(e);
+    if (!path.includes(deleteButtonRef.current)) {
+      onSelect();
+    }
+  };
+
+  const deleteGroup = id => {
     firebase
       .firestore()
-      .collection('groups')
-      .doc(docId)
+      .collection("groups")
+      .doc(id)
       .delete()
       .then(() => {
-        setGroups([...groups]);
-        setSelectedGroup('ALL');
+        if (selectedGroup === id) {
+          setSelectedGroup("ALL");
+        }
       });
   };
 
   return (
-    <Container>
+    <Container onClick={onClick} onDoubleClick={() => setIsEditMode(true)}>
       <ColoredDot />
       <TaskName>{group.name}</TaskName>
-      <DeleteButton onClick={() => deleteGroup(group.docId)}>
+      <DeleteButton ref={deleteButtonRef} onClick={() => deleteGroup(group.id)}>
         <FaTrashAlt />
       </DeleteButton>
     </Container>

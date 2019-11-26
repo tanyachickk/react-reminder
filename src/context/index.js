@@ -1,11 +1,7 @@
-import { GroupsContext, GroupsProvider, useGroupsValue } from './groupsContext';
-import { SelectedGroupContext, SelectedGroupProvider, useSelectedGroupValue } from './selectedGroupsContext';
-
-export {
-  GroupsContext,
-  GroupsProvider,
-  useGroupsValue,
+import {
   SelectedGroupContext,
   SelectedGroupProvider,
-  useSelectedGroupValue,
-};
+  useSelectedGroupValue
+} from "./selectedGroupContext";
+
+export { SelectedGroupContext, SelectedGroupProvider, useSelectedGroupValue };

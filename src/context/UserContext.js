@@ -3,10 +3,12 @@ import { useAuth } from "../hooks/useAuth";
 
 export const UserContext = createContext({ user: null });
 export const UserProvider = ({ children }) => {
-  const [{ user }] = useAuth();
+  const [{ user, isInitialized }] = useAuth();
 
   return (
-    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ user, isInitialized }}>
+      {children}
+    </UserContext.Provider>
   );
 };
 

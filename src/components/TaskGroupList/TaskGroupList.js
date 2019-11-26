@@ -1,7 +1,9 @@
 import React, { useState, useRef } from "react";
+import { firebase } from "../../firebase";
+import { useSession } from "../../context/UserContext";
 import { ScrollToHOC } from "react-scroll-to";
 import { IoIosAddCircle } from "react-icons/io";
-import { useSelectedGroupValue, useGroupsValue } from "../../context";
+import { useSelectedGroupValue } from "../../context/selectedGroupContext";
 import { TaskGroupItem } from "../TaskGroupItem";
 import {
   Container,
@@ -10,10 +12,8 @@ import {
   AddButton,
   AddButtonText
 } from "./TaskGroupList.styled";
-import { USER_ID } from "../../constants/values";
-import { firebase } from "../../firebase";
-import uuidv1 from "uuid/v1";
 import { TextInput } from "../TextInput";
+import { useGroups } from "../../hooks/useGroups";
 
 const defaultGroupValue = "New group";
 
@@ -21,26 +21,28 @@ const TaskGroupList = ({ scroll }) => {
   const [showNewGroup, setShowNewGroup] = useState(false);
   const [groupName, setGroupName] = useState(defaultGroupValue);
   const { selectedGroup, setSelectedGroup } = useSelectedGroupValue();
-  const { groups, setGroups } = useGroupsValue();
+  const { user } = useSession();
+  const { groups } = useGroups(user.uid);
 
   const listRef = useRef();
-  const groupId = uuidv1();
 
-  const addProject = () =>
+  const addGroup = () => {
+    if (!groupName) {
+      return;
+    }
+    const name = groupName;
+    setGroupName(defaultGroupValue);
+    setShowNewGroup(false);
     groupName &&
-    firebase
-      .firestore()
-      .collection("groups")
-      .add({
-        groupId,
-        name: groupName,
-        userId: USER_ID
-      })
-      .then(() => {
-        setGroups([]);
-        setGroupName(defaultGroupValue);
-        setShowNewGroup(false);
-      });
+      firebase
+        .firestore()
+        .collection("groups")
+        .add({
+          name: name,
+          userId: user.uid,
+          created: new Date()
+        });
+  };
 
   const scrollListToBottom = () => {
     const { height } = listRef.current.getBoundingClientRect();
@@ -57,21 +59,20 @@ const TaskGroupList = ({ scroll }) => {
       <List ref={listRef}>
         {groups &&
           groups.map(group => (
-            <Item
-              key={group.groupId}
-              active={group.groupId === selectedGroup}
-              onClick={() => {
-                setSelectedGroup(group.groupId);
-              }}
-            >
-              <TaskGroupItem group={group} />
+            <Item key={group.id} active={group.id === selectedGroup}>
+              <TaskGroupItem
+                group={group}
+                onSelect={() => {
+                  setSelectedGroup(group.id);
+                }}
+              />
             </Item>
           ))}
         {showNewGroup && (
           <TextInput
             value={groupName}
             onChange={setGroupName}
-            onSave={addProject}
+            onSave={addGroup}
           />
         )}
       </List>
