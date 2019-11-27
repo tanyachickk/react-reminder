@@ -1,15 +1,25 @@
-import styled from "styled-components";
-import { borderColor } from "../../constants/theme";
+import styled, { css } from "styled-components";
+import { borderColor, mainThemeColor } from "../../constants/theme";
 
 export const Container = styled.div``;
 
 export const Input = styled.input`
   width: 100%;
-  padding-left: 1.75rem;
   border-radius: 0.25rem;
   border: none;
   border: ${props => (props.underline ? `1px solid ${borderColor}` : "none")};
   font-size: 1em;
   line-height: 1.25em;
+  background-color: ${props =>
+    props.isEditMode ? mainThemeColor : "transparent"};
   outline: none;
+  cursor: ${props => (props.readOnly ? "default" : "text")};
+
+  ${props =>
+    !props.isEditMode &&
+    css`
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    `}
 `;

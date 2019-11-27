@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import {
-  highlightColor,
   primaryTextColor,
   secondaryTextColor,
   sidebarBackgroundColor
@@ -8,15 +7,17 @@ import {
 
 export const Container = styled.div``;
 
-export const List = styled.ul``;
+export const List = styled.ul`
+  padding-bottom: 0.5rem;
+`;
 
 export const Item = styled.li`
   color: ${primaryTextColor};
-  background: ${props => (props.active ? highlightColor : "transparent")};
   cursor: pointer;
+`;
 
-  &:hover {
-  }
+export const AddInputContainer = styled.div`
+  padding: 0 2rem;
 `;
 
 export const AddButton = styled.button`
@@ -30,6 +31,7 @@ export const AddButton = styled.button`
   color: ${secondaryTextColor};
   font-size: 1rem;
   border: none;
+  outline: none;
   cursor: pointer;
 `;
 

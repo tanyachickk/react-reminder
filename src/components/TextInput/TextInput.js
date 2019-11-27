@@ -3,24 +3,49 @@ import { withTheme } from "styled-components";
 import { ReactPageClick } from "react-page-click";
 import { Input, Container } from "./TextInput.styled";
 
-const isSaveAction = key => key === "Enter" || key === "Escape";
-
-const TextInput = ({ value, underline = true, onChange, onSave }) => {
+const TextInput = ({
+  value,
+  isReadOnly = false,
+  isEditMode = false,
+  isUnderline = true,
+  onChange,
+  onEnter,
+  onEscape,
+  onClickAway
+}) => {
   const inputRef = useRef();
+
   useEffect(() => {
-    inputRef.current.focus();
-    inputRef.current.select();
-  }, []);
+    if (isEditMode) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [isEditMode]);
+
+  const onKeyDown = e => {
+    switch (e.key) {
+      case "Enter":
+        onEnter && onEnter();
+        return;
+      case "Escape":
+        onEscape && onEscape();
+        return;
+      default:
+        return;
+    }
+  };
 
   return (
     <Container>
-      <ReactPageClick notify={onSave}>
+      <ReactPageClick notify={() => onClickAway && onClickAway()}>
         <Input
           ref={inputRef}
           value={value}
-          underline={underline}
-          onChange={e => onChange(e.target.value)}
-          onKeyDown={e => isSaveAction(e.key) && onSave()}
+          readOnly={isReadOnly}
+          isEditMode={isEditMode}
+          isUnderline={isUnderline}
+          onKeyDown={onKeyDown}
+          onChange={e => onChange && onChange(e.target.value)}
         />
       </ReactPageClick>
     </Container>

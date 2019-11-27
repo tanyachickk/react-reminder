@@ -1,19 +1,20 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { firebase } from "../../firebase";
 import { useSession } from "../../context/UserContext";
 import { ScrollToHOC } from "react-scroll-to";
 import { IoIosAddCircle } from "react-icons/io";
 import { useSelectedGroupValue } from "../../context/SelectedGroupContext";
 import { TaskGroupItem } from "../TaskGroupItem";
+import { TextInput } from "../TextInput";
+import { useGroups } from "../../hooks/useGroups";
 import {
   Container,
   List,
   Item,
   AddButton,
-  AddButtonText
+  AddButtonText,
+  AddInputContainer
 } from "./TaskGroupList.styled";
-import { TextInput } from "../TextInput";
-import { useGroups } from "../../hooks/useGroups";
 
 const defaultGroupValue = "New group";
 
@@ -27,13 +28,10 @@ const TaskGroupList = ({ scroll }) => {
   const listRef = useRef();
 
   const addGroup = () => {
-    if (!groupName) {
-      return;
-    }
     const name = groupName;
     setGroupName(defaultGroupValue);
     setShowNewGroup(false);
-    groupName &&
+    if (name) {
       firebase
         .firestore()
         .collection("groups")
@@ -41,27 +39,38 @@ const TaskGroupList = ({ scroll }) => {
           name: name,
           userId: user.uid,
           created: new Date()
+        })
+        .then(value => {
+          setSelectedGroup(value.id);
+          scrollListToBottom();
         });
+    }
   };
 
-  const scrollListToBottom = () => {
+  const scrollListToBottom = useCallback(() => {
     const { height } = listRef.current.getBoundingClientRect();
     scroll({ ref: listRef, y: height });
-  };
+  }, [scroll]);
 
   const onShowNewGroup = () => {
     setShowNewGroup(true);
-    scrollListToBottom();
   };
+
+  useEffect(() => {
+    if (showNewGroup) {
+      scrollListToBottom();
+    }
+  }, [showNewGroup, scrollListToBottom]);
 
   return (
     <Container>
       <List ref={listRef}>
         {groups &&
           groups.map(group => (
-            <Item key={group.id} active={group.id === selectedGroup}>
+            <Item key={group.id}>
               <TaskGroupItem
                 group={group}
+                active={group.id === selectedGroup}
                 onSelect={() => {
                   setSelectedGroup(group.id);
                 }}
@@ -69,11 +78,16 @@ const TaskGroupList = ({ scroll }) => {
             </Item>
           ))}
         {showNewGroup && (
-          <TextInput
-            value={groupName}
-            onChange={setGroupName}
-            onSave={addGroup}
-          />
+          <AddInputContainer>
+            <TextInput
+              value={groupName}
+              isEditMode={true}
+              onChange={setGroupName}
+              onEnter={addGroup}
+              onEscape={addGroup}
+              onClickAway={addGroup}
+            />
+          </AddInputContainer>
         )}
       </List>
       <AddButton onClick={onShowNewGroup}>

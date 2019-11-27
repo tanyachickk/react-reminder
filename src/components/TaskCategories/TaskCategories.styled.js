@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { highlightColor, primaryTextColor } from "../../constants/theme";
+import {
+  activeTabBackgroundColor,
+  highlightTabBackgroundColor,
+  primaryTextColor
+} from "../../constants/theme";
 
 export const Container = styled.ul``;
 
@@ -8,10 +12,13 @@ export const CategoryItem = styled.li`
   align-items: center;
   padding: 0.25rem 1rem;
   color: ${primaryTextColor};
-  background: ${props => (props.active ? highlightColor : "transparent")};
-  cursor: pointer;
+  background: ${props =>
+    props.active ? activeTabBackgroundColor : "transparent"};
+  cursor: ${props => (props.active ? "default" : "pointer")};
 
   &:hover {
+    background-color: ${props =>
+      props.active ? activeTabBackgroundColor : highlightTabBackgroundColor};
   }
 `;
 

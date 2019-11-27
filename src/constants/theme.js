@@ -1,5 +1,10 @@
 import theme from "styled-theming";
 
+export const mainThemeColor = theme("mode", {
+  light: "#fff",
+  dark: "#000"
+});
+
 export const contrastColor = theme("mode", {
   light: "#000",
   dark: "#fff"
@@ -40,9 +45,14 @@ export const accentColor = theme("mode", {
   dark: "#0070c9"
 });
 
-export const highlightColor = theme("mode", {
+export const activeTabBackgroundColor = theme("mode", {
   light: "#ccc",
   dark: "#ccc"
+});
+
+export const highlightTabBackgroundColor = theme("mode", {
+  light: "rgba(0,0,0,0.03)",
+  dark: "rgba(0,0,0,0.03)"
 });
 
 export const buttonBackgroundColor = theme("mode", {
