@@ -1,7 +1,7 @@
-import React from 'react';
-import { useSelectedGroupValue } from '../../context';
-import { collatedTasks } from '../../constants/values';
-import { Container, CategoryItem, CategoryName } from './TaskCategories.styled';
+import React from "react";
+import { useSelectedGroupValue } from "../../context/SelectedGroupContext";
+import { collatedTasks } from "../../constants/values";
+import { Container, CategoryItem, CategoryName } from "./TaskCategories.styled";
 
 export const TaskCategories = () => {
   const { selectedGroup, setSelectedGroup } = useSelectedGroupValue();

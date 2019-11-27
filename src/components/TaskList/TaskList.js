@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import moment from "moment";
 import { firebase } from "../../firebase";
 import { useSession } from "../../context/UserContext";
 import { useTasks } from "../../hooks/useTasks";
-import { useSelectedGroupValue } from "../../context/selectedGroupContext";
+import { useSelectedGroupValue } from "../../context/SelectedGroupContext";
 import { Container, TaskItem, TaskName } from "./TaskList.styled";
 
 export const TaskList = () => {
@@ -59,7 +60,13 @@ export const TaskList = () => {
             onChange={e => onFlag(task.id, e.target.checked)}
           />
           <TaskName>{task.text}</TaskName>
-          <div>{`${task.date && task.date.toDate()}`}</div>
+          <div>{`${
+            task.date
+              ? moment(task.date && task.date.toDate()).format(
+                  "DD.MM.YYYY, HH:ss"
+                )
+              : ""
+          }`}</div>
         </TaskItem>
       ))}
       <input

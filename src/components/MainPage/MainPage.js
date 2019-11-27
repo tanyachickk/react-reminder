@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TaskList } from "../TaskList";
 import { Container, PageHeader, PageTitle } from "./MainPage.styled";
-import { useSelectedGroupValue } from "../../context/selectedGroupContext";
+import { useSelectedGroupValue } from "../../context/SelectedGroupContext";
 import { collatedTasksExists } from "../../helpers";
 import { useSession } from "../../context/UserContext";
 import { useGroups } from "../../hooks/useGroups";

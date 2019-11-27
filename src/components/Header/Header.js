@@ -1,8 +1,8 @@
-import React from 'react';
-import { FaPalette } from 'react-icons/fa';
-import { withTheme } from 'styled-components';
-import { useTheme } from '../../context/themeContext';
-import { Container } from './Header.styled';
+import React from "react";
+import { FaPalette } from "react-icons/fa";
+import { withTheme } from "styled-components";
+import { useTheme } from "../../context/ThemeContext";
+import { Container } from "./Header.styled";
 
 const Header = ({ theme }) => {
   const themeToggle = useTheme();
@@ -13,7 +13,9 @@ const Header = ({ theme }) => {
       <ul>
         <li>
           <button onClick={() => themeToggle.toggle()}>
-            {theme.mode === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            {theme.mode === "dark"
+              ? "Switch to Light Mode"
+              : "Switch to Dark Mode"}
           </button>
         </li>
         <li>

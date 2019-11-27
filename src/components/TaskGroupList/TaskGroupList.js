@@ -3,7 +3,7 @@ import { firebase } from "../../firebase";
 import { useSession } from "../../context/UserContext";
 import { ScrollToHOC } from "react-scroll-to";
 import { IoIosAddCircle } from "react-icons/io";
-import { useSelectedGroupValue } from "../../context/selectedGroupContext";
+import { useSelectedGroupValue } from "../../context/SelectedGroupContext";
 import { TaskGroupItem } from "../TaskGroupItem";
 import {
   Container,

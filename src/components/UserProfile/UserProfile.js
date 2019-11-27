@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { withTheme } from "styled-components";
-import { useTheme } from "../../context/themeContext";
+import { useTheme } from "../../context/ThemeContext";
 import { Container, Overlay } from "./UserProfile.styles";
 import { useAuth } from "../../hooks/useAuth";
 

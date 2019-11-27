@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
-import { useSelectedGroupValue } from "../../context/selectedGroupContext";
+import { useSelectedGroupValue } from "../../context/SelectedGroupContext";
 import { firebase } from "../../firebase";
 import {
   Container,
