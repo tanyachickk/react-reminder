@@ -11,7 +11,9 @@ export const Input = styled.input`
   font-size: 1em;
   line-height: 1.25em;
   background-color: ${props =>
-    props.isEditMode ? mainThemeColor : "transparent"};
+    props.isEditMode && props.showBackgroundOnFocus
+      ? mainThemeColor
+      : "transparent"};
   outline: none;
   cursor: ${props => (props.readOnly ? "default" : "text")};
 

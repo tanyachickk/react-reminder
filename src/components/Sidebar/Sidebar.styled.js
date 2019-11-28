@@ -43,7 +43,7 @@ export const ProfileContainer = styled.button`
 export const TextDivider = styled.div`
   margin: 1rem 0.5rem 0.5rem;
   color: ${secondaryTextColor};
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
 `;
 

@@ -5,9 +5,9 @@ import { Header } from "../Header";
 import { Sidebar } from "../Sidebar";
 import { MyThemeProvider } from "../../context/ThemeContext";
 import { SelectedGroupProvider } from "../../context/SelectedGroupContext";
-import { MainPage } from "../MainPage";
 import { UserProfile } from "../UserProfile";
 import { useSession } from "../../context/UserContext";
+import { TaskList } from "../TaskList/TaskList";
 
 const InnerPage = () => {
   const history = useHistory();
@@ -26,7 +26,7 @@ const InnerPage = () => {
         <MainLayout
           header={<Header />}
           sidebar={<Sidebar onUserInfoClick={() => setIsShowProfile(true)} />}
-          content={<MainPage />}
+          content={<TaskList />}
         />
         {isShowProfile && (
           <UserProfile onClose={() => setIsShowProfile(false)} />

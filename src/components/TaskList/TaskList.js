@@ -1,16 +1,33 @@
-import React, { useState } from "react";
-import moment from "moment";
+import React, { useState, useEffect } from "react";
 import { firebase } from "../../firebase";
 import { useSession } from "../../context/UserContext";
 import { useTasks } from "../../hooks/useTasks";
+import { collatedTasksExists } from "../../helpers";
+import { useGroups } from "../../hooks/useGroups";
 import { useSelectedGroupValue } from "../../context/SelectedGroupContext";
-import { Container, TaskItem, TaskName } from "./TaskList.styled";
+import {
+  Container,
+  PageHeader,
+  PageTitle,
+  List,
+  PageContent
+} from "./TaskList.styled";
+import { TaskItem } from "../TaskItem";
 
 export const TaskList = () => {
+  const [title, setTitle] = useState("");
   const [newTask, setNewTask] = useState("");
   const { selectedGroup } = useSelectedGroupValue();
   const { user } = useSession();
   const { tasks } = useTasks(user.uid, selectedGroup);
+  const { groups } = useGroups(user.uid);
+
+  useEffect(() => {
+    const currentGroup =
+      collatedTasksExists(selectedGroup) ||
+      groups.find(group => group.id === selectedGroup);
+    currentGroup && setTitle(currentGroup.name);
+  }, [selectedGroup, groups]);
 
   const createTask = () => {
     firebase
@@ -52,28 +69,21 @@ export const TaskList = () => {
 
   return (
     <Container>
-      {tasks.map(task => (
-        <TaskItem key={`${task.id}`}>
+      <PageHeader>
+        <PageTitle>{title}</PageTitle>
+      </PageHeader>
+      <PageContent>
+        <List>
+          {tasks.map(task => (
+            <TaskItem key={`${task.id}`} task={task}></TaskItem>
+          ))}
           <input
-            checked={task.flagged}
-            type="checkbox"
-            onChange={e => onFlag(task.id, e.target.checked)}
+            value={newTask}
+            onChange={e => setNewTask(e.target.value)}
+            onKeyDown={onKeydown}
           />
-          <TaskName>{task.text}</TaskName>
-          <div>{`${
-            task.date
-              ? moment(task.date && task.date.toDate()).format(
-                  "DD.MM.YYYY, HH:ss"
-                )
-              : ""
-          }`}</div>
-        </TaskItem>
-      ))}
-      <input
-        value={newTask}
-        onChange={e => setNewTask(e.target.value)}
-        onKeyDown={onKeydown}
-      />
+        </List>
+      </PageContent>
     </Container>
   );
 };

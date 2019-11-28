@@ -29,7 +29,8 @@ export const AddButton = styled.button`
   padding: 0.5rem 1rem;
   background-color: ${sidebarBackgroundColor};
   color: ${secondaryTextColor};
-  font-size: 1rem;
+  font-size: 14px;
+  font-weight: 600;
   border: none;
   outline: none;
   cursor: pointer;

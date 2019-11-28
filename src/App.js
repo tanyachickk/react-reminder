@@ -7,8 +7,9 @@ import {
 } from "react-router-dom";
 import { LoginPage } from "./components/LoginPage";
 import { InnerPage } from "./components/InnerPage";
-import "./App.css";
 import { UserProvider } from "./context/UserContext";
+import "react-datepicker/dist/react-datepicker.css";
+import "./App.css";
 
 export const App = () => {
   return (

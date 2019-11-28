@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "firebase": "^6.2.4",
+    "i18next": "^19.0.1",
     "moment": "^2.24.0",
     "react": "^16.11.0",
+    "react-datepicker": "^2.10.1",
     "react-dom": "^16.11.0",
+    "react-i18next": "^11.2.3",
     "react-icons": "^3.8.0",
     "react-page-click": "^4.0.4",
     "react-router-dom": "^5.1.2",

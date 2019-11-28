@@ -51,8 +51,8 @@ export const activeTabBackgroundColor = theme("mode", {
 });
 
 export const highlightTabBackgroundColor = theme("mode", {
-  light: "rgba(0,0,0,0.03)",
-  dark: "rgba(0,0,0,0.03)"
+  light: "rgba(0,0,0,0.02)",
+  dark: "rgba(0,0,0,0.02)"
 });
 
 export const buttonBackgroundColor = theme("mode", {
@@ -64,3 +64,13 @@ export const buttonTextColor = theme("mode", {
   light: "#eee",
   dark: "#222"
 });
+
+export const redColor = "#ff3b30";
+export const yellowColor = "#ffcc00";
+export const tealColor = "#5ac8fa";
+export const purpleColor = "#af52de";
+export const pinkColor = "#ff2d55";
+export const orangeColor = "#ff9501";
+export const indigoColor = "#5856d6";
+export const greenColor = "#34c759";
+export const blueColor = "#007aff";

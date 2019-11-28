@@ -7,7 +7,7 @@ const TextInput = ({
   value,
   isReadOnly = false,
   isEditMode = false,
-  isUnderline = true,
+  showBackgroundOnFocus = true,
   onChange,
   onEnter,
   onEscape,
@@ -18,7 +18,8 @@ const TextInput = ({
   useEffect(() => {
     if (isEditMode) {
       inputRef.current.focus();
-      inputRef.current.select();
+    } else {
+      inputRef.current.blur();
     }
   }, [isEditMode]);
 
@@ -43,7 +44,7 @@ const TextInput = ({
           value={value}
           readOnly={isReadOnly}
           isEditMode={isEditMode}
-          isUnderline={isUnderline}
+          showBackgroundOnFocus={showBackgroundOnFocus}
           onKeyDown={onKeyDown}
           onChange={e => onChange && onChange(e.target.value)}
         />
