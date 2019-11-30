@@ -1,21 +1,26 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   accentColor,
   borderColor,
   primaryTextColor,
-  shadowColor,
   backgroundColor,
-  highlightBackgroundColor
+  highlightBackgroundColor,
+  buttonPrimaryBg,
+  buttonPrimaryHoverBg,
+  buttonPrimaryBorderColor,
+  buttonPrimaryHoverBorderColor,
+  buttonPrimaryActiveBg,
+  buttonPrimaryActiveBorderColor
 } from "../../constants/theme";
 
 export const Button = styled.button`
   color: ${primaryTextColor};
   line-height: 1;
-  padding: 0 8px;
-  border: 1px solid ${borderColor};
+  padding: 0.4em 1.5em;
   background-color: ${backgroundColor};
+  border: 1px solid ${borderColor};
   border-radius: 4px;
-  box-shadow: 0 2px 3px 1px ${shadowColor};
+  font-size: inherit;
   outline: none;
   cursor: pointer;
 
@@ -27,6 +32,24 @@ export const Button = styled.button`
     color: white;
     background-color: ${accentColor};
     box-shadow: none;
-    border: none;
+    border-color: transparent;
   }
+
+  ${props =>
+    props.color === "primary" &&
+    css`
+      color: white;
+      background-image: ${buttonPrimaryBg};
+      border-color: ${buttonPrimaryBorderColor};
+
+      &:hover {
+        background-image: ${buttonPrimaryHoverBg};
+        border-color: ${buttonPrimaryHoverBorderColor};
+      }
+
+      &:active {
+        background-image: ${buttonPrimaryActiveBg};
+        border-color: ${buttonPrimaryActiveBorderColor};
+      }
+    `}
 `;

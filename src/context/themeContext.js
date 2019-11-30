@@ -6,7 +6,7 @@ const ThemeToggleContext = createContext();
 
 export const useTheme = () => useContext(ThemeToggleContext);
 
-export const MyThemeProvider = ({ children }) => {
+export const AppThemeProvider = ({ children }) => {
   const [themeState, setThemeState] = React.useState({
     mode: "light"
   });

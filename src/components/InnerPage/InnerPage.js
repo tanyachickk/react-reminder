@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { MainLayout } from "../MainLayout";
 import { Header } from "../Header";
 import { Sidebar } from "../Sidebar";
-import { MyThemeProvider } from "../../context/ThemeContext";
 import { SelectedGroupProvider } from "../../context/SelectedGroupContext";
 import { UserProfile } from "../UserProfile";
 import { useSession } from "../../context/UserContext";
@@ -16,22 +15,18 @@ const InnerPage = () => {
 
   useEffect(() => {
     if (isInitialized && !user) {
-      history.replace({ pathname: "/login" });
+      history.replace({ pathname: "/sign-in" });
     }
   });
 
   return isInitialized && !!user ? (
     <SelectedGroupProvider>
-      <MyThemeProvider>
-        <MainLayout
-          header={<Header />}
-          sidebar={<Sidebar onUserInfoClick={() => setIsShowProfile(true)} />}
-          content={<TaskList />}
-        />
-        {isShowProfile && (
-          <UserProfile onClose={() => setIsShowProfile(false)} />
-        )}
-      </MyThemeProvider>
+      <MainLayout
+        header={<Header />}
+        sidebar={<Sidebar onUserInfoClick={() => setIsShowProfile(true)} />}
+        content={<TaskList />}
+      />
+      {isShowProfile && <UserProfile onClose={() => setIsShowProfile(false)} />}
     </SelectedGroupProvider>
   ) : null;
 };

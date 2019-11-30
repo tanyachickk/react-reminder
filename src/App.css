@@ -6,13 +6,13 @@
 
 html,
 body {
+  width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  line-height: 1.25;
   font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue",
     "Helvetica", "Arial", sans-serif;
   color: #202020;
@@ -22,7 +22,11 @@ body {
 }
 
 #root {
+  width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 1.25;
 }
 
 ul {

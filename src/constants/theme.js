@@ -65,10 +65,13 @@ export const overlayBackgroundColor = theme("mode", {
   dark: "rgba(0,0,0,0.5)"
 });
 
-export const buttonBackgroundColor = theme("mode", {
-  light: "#222",
-  dark: "#eee"
-});
+export const buttonPrimaryBg = "linear-gradient(#42a1ec,#0070c9)";
+export const buttonPrimaryHoverBg = "linear-gradient(#51a9ee,#147bcd)";
+export const buttonPrimaryActiveBg = "linear-gradient(#3d94d9,#0067b9)";
+
+export const buttonPrimaryBorderColor = "#07c";
+export const buttonPrimaryHoverBorderColor = "#1482d0";
+export const buttonPrimaryActiveBorderColor = "#006dbc";
 
 export const buttonTextColor = theme("mode", {
   light: "#eee",
