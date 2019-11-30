@@ -1,7 +1,7 @@
 import { collatedTasks } from "../constants/values";
 
 export const collatedTasksExists = selectedGroup =>
-  collatedTasks.find(task => task.key === selectedGroup);
+  collatedTasks.find(category => category.key === selectedGroup);
 
 export const getEventPath = e => {
   let path = e.path || (e.composedPath && e.composedPath()) || [];

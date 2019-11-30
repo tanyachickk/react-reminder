@@ -1,5 +1,4 @@
 import React, { useRef, useState, forwardRef } from "react";
-import moment from "moment";
 import DatePicker from "react-datepicker";
 import { FiCalendar, FiTrash } from "react-icons/fi";
 import { firebase } from "../../firebase";
@@ -95,7 +94,6 @@ export const TaskItem = ({ task, active, onSelect }) => {
           <DatePicker
             selected={task.date.toDate()}
             onChange={date => setTaskDate(date)}
-            calendarClassName="custom-calendar"
             customInput={<DateControl />}
             timeInputLabel="Time:"
             dateFormat="dd.MM.yyyy hh:mm"
@@ -111,27 +109,28 @@ export const TaskItem = ({ task, active, onSelect }) => {
       </Content>
       {!isEditMode && (
         <Controls>
-          <DatePicker
-            selected={task.date ? task.date.toDate() : null}
-            onChange={date => setTaskDate(date)}
-            calendarClassName="custom-calendar"
-            popperPlacement="left-center"
-            customInput={
-              <NewDateControl
-                ref={editButtonRef}
-                onClick={() => setIsEditMode(true)}
-              />
-            }
-            timeInputLabel="Time:"
-            dateFormat="dd.MM.yyyy hh:mm"
-            showTimeInput
-          >
-            <ResetDateContainer>
-              <ResetDateButton onClick={() => setTaskDate(null)}>
-                clear date
-              </ResetDateButton>
-            </ResetDateContainer>
-          </DatePicker>
+          {!task.date && (
+            <DatePicker
+              selected={task.date ? task.date.toDate() : null}
+              onChange={date => setTaskDate(date)}
+              popperPlacement="left-center"
+              customInput={
+                <NewDateControl
+                  ref={editButtonRef}
+                  onClick={() => setIsEditMode(true)}
+                />
+              }
+              timeInputLabel="Time:"
+              dateFormat="dd.MM.yyyy hh:mm"
+              showTimeInput
+            >
+              <ResetDateContainer>
+                <ResetDateButton onClick={() => setTaskDate(null)}>
+                  clear date
+                </ResetDateButton>
+              </ResetDateContainer>
+            </DatePicker>
+          )}
           <DeleteButton ref={deleteButtonRef} onClick={deleteTask}>
             <FiTrash />
           </DeleteButton>

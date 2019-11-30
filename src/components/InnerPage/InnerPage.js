@@ -7,7 +7,7 @@ import { MyThemeProvider } from "../../context/ThemeContext";
 import { SelectedGroupProvider } from "../../context/SelectedGroupContext";
 import { UserProfile } from "../UserProfile";
 import { useSession } from "../../context/UserContext";
-import { TaskList } from "../TaskList/TaskList";
+import { TaskList } from "../TaskList";
 
 const InnerPage = () => {
   const history = useHistory();

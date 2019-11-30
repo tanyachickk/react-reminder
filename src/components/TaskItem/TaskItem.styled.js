@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
   secondaryTextColor,
   activeTabBackgroundColor,
-  highlightTabBackgroundColor,
+  highlightBackgroundColor,
   borderColor,
   redColor
 } from "../../constants/theme";
@@ -13,6 +13,7 @@ export const DeleteButton = styled.button`
   font-size: 14px;
   color: ${secondaryTextColor};
   transition: opacity 0.2s ease;
+  line-height: 28px;
   outline: none;
   cursor: pointer;
 
@@ -26,6 +27,7 @@ export const EditButton = styled.button`
   font-size: 14px;
   color: ${secondaryTextColor};
   transition: opacity 0.2s ease;
+  line-height: 28px;
   outline: none;
   cursor: pointer;
 
@@ -83,7 +85,7 @@ export const Container = styled.div`
 
   &:hover {
     background-color: ${props =>
-      props.active ? activeTabBackgroundColor : highlightTabBackgroundColor};
+      props.active ? activeTabBackgroundColor : highlightBackgroundColor};
   }
   &:hover ${Controls} {
     display: flex;

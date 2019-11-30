@@ -2,7 +2,9 @@ import styled from "styled-components";
 import {
   secondaryTextColor,
   activeTabBackgroundColor,
-  highlightBackgroundColor
+  highlightBackgroundColor,
+  borderColor,
+  redColor
 } from "../../constants/theme";
 
 export const DeleteButton = styled.button`
@@ -39,23 +41,45 @@ export const Controls = styled.div`
   padding-left: 0.5rem;
 `;
 
-export const ColoredDot = styled.div`
-  margin-left: 3px;
-  margin-right: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  background-color: black;
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  margin-left: 0.75rem;
+  height: 2.5rem;
+`;
+
+export const Date = styled.div`
+  color: ${secondaryTextColor};
+  font-size: 12px;
+  cursor: pointer;
+`;
+
+export const ResetDateContainer = styled.div`
+  text-align: center;
+  margin-bottom: 10px;
+`;
+
+export const ResetDateButton = styled.button`
+  color: ${redColor};
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   padding: 0.25rem 0.5rem 0.25rem 1rem;
   background-color: ${props =>
     props.active ? activeTabBackgroundColor : "transparent"};
-  cursor: ${props => (props.active ? "default" : "pointer")};
 
   &:hover {
     background-color: ${props =>
@@ -63,5 +87,15 @@ export const Container = styled.div`
   }
   &:hover ${Controls} {
     display: flex;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 46px;
+    right: 0;
+    height: 1px;
+    background-color: ${borderColor};
   }
 `;

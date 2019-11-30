@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { withTheme } from "styled-components";
 import { Input, Label } from "./BaseCheckbox.styles";
 
-const BaseCheckbox = ({ checked, color, onChange }) => {
+const BaseCheckbox = ({ checked, disabled, hidden, color, onChange }) => {
   return (
-    <Label active={checked} color={color}>
+    <Label active={checked} disabled={disabled} hidden={hidden} color={color}>
       <Input
         type="checkbox"
         checked={checked}

@@ -50,9 +50,14 @@ export const activeTabBackgroundColor = theme("mode", {
   dark: "#ccc"
 });
 
-export const highlightTabBackgroundColor = theme("mode", {
+export const highlightBackgroundColor = theme("mode", {
   light: "rgba(0,0,0,0.02)",
   dark: "rgba(0,0,0,0.02)"
+});
+
+export const shadowColor = theme("mode", {
+  light: "rgba(0,0,0,0.05)",
+  dark: "rgba(0,0,0,0.05)"
 });
 
 export const buttonBackgroundColor = theme("mode", {

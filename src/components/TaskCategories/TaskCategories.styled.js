@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
   activeTabBackgroundColor,
-  highlightTabBackgroundColor,
+  highlightBackgroundColor,
   primaryTextColor
 } from "../../constants/theme";
 
@@ -18,7 +18,7 @@ export const CategoryItem = styled.li`
 
   &:hover {
     background-color: ${props =>
-      props.active ? activeTabBackgroundColor : highlightTabBackgroundColor};
+      props.active ? activeTabBackgroundColor : highlightBackgroundColor};
   }
 `;
 

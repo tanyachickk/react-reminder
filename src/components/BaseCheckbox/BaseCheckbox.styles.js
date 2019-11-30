@@ -1,9 +1,5 @@
 import styled, { css } from "styled-components";
-import {
-  borderColor,
-  mainThemeColor,
-  accentColor
-} from "../../constants/theme";
+import { borderColor, accentColor } from "../../constants/theme";
 
 export const Label = styled.label`
   position: relative;
@@ -11,7 +7,9 @@ export const Label = styled.label`
   height: 18px;
   border: 1px solid ${borderColor};
   border-radius: 50%;
-  cursor: pointer;
+  opacity: ${props => (props.hidden ? 0 : 1)};
+  transition: opacity 1s ease;
+  cursor: ${props => (props.disabled ? "default" : "pointer")};
 
   &::after {
     content: "";

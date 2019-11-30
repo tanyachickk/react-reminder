@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { firebase } from "../../firebase";
+import { ScrollToHOC } from "react-scroll-to";
 import { useSession } from "../../context/UserContext";
 import { useTasks } from "../../hooks/useTasks";
 import { collatedTasksExists } from "../../helpers";
@@ -10,26 +11,53 @@ import {
   PageHeader,
   PageTitle,
   List,
-  PageContent
+  PageContent,
+  EmptyList
 } from "./TaskList.styled";
 import { TaskItem } from "../TaskItem";
+import { NewTask } from "../NewTask";
+import { ActionButton } from "../ActionButton";
+import { IoIosAdd } from "react-icons/io";
 
-export const TaskList = () => {
+const TaskList = ({ scroll }) => {
   const [title, setTitle] = useState("");
+  const [isAllowToCreateTask, setIsAllowToCreateTask] = useState(false);
   const [newTask, setNewTask] = useState("");
+  const [isEditNewTask, setIsEditNewTask] = useState(false);
   const { selectedGroup } = useSelectedGroupValue();
   const { user } = useSession();
   const { tasks } = useTasks(user.uid, selectedGroup);
   const { groups } = useGroups(user.uid);
+  const listRef = useRef();
 
   useEffect(() => {
-    const currentGroup =
-      collatedTasksExists(selectedGroup) ||
-      groups.find(group => group.id === selectedGroup);
-    currentGroup && setTitle(currentGroup.name);
+    const taskCaterory = collatedTasksExists(selectedGroup);
+    if (taskCaterory) {
+      setTitle(taskCaterory.name);
+      setIsAllowToCreateTask(false);
+    } else {
+      const taskGroup = groups.find(group => group.id === selectedGroup);
+      setTitle(taskGroup.name);
+      setIsAllowToCreateTask(true);
+    }
   }, [selectedGroup, groups]);
 
+  const scrollListToBottom = useCallback(() => {
+    const { height } = listRef.current.getBoundingClientRect();
+    scroll({ ref: listRef, y: height });
+  }, [scroll]);
+
+  const onAddButtonClick = () => {
+    scrollListToBottom();
+    setIsEditNewTask(true);
+  };
+
   const createTask = () => {
+    setIsEditNewTask(false);
+    if (!newTask) {
+      return;
+    }
+    setNewTask("");
     firebase
       .firestore()
       .collection("tasks")
@@ -42,48 +70,40 @@ export const TaskList = () => {
         created: new Date()
       })
       .then(() => {
-        setNewTask("");
+        setIsEditNewTask(true);
+        scrollListToBottom();
       });
   };
 
-  const onKeydown = ({ key }) => {
-    switch (key) {
-      case "Enter":
-        createTask();
-        break;
-      default:
-        break;
-    }
-  };
-
-  const onFlag = (id, value) => {
-    firebase
-      .firestore()
-      .collection("tasks")
-      .doc(id)
-      .update({
-        flagged: value
-      })
-      .then(() => {});
-  };
-
   return (
-    <Container>
+    <Container ref={listRef}>
       <PageHeader>
         <PageTitle>{title}</PageTitle>
+        {isAllowToCreateTask && (
+          <ActionButton onClick={onAddButtonClick}>
+            <IoIosAdd size={22} />
+          </ActionButton>
+        )}
       </PageHeader>
       <PageContent>
         <List>
           {tasks.map(task => (
             <TaskItem key={`${task.id}`} task={task}></TaskItem>
           ))}
-          <input
-            value={newTask}
-            onChange={e => setNewTask(e.target.value)}
-            onKeyDown={onKeydown}
-          />
+          {isAllowToCreateTask && (
+            <NewTask
+              value={newTask}
+              isEditMode={isEditNewTask}
+              createTask={createTask}
+              onClick={setIsEditNewTask}
+              onChange={setNewTask}
+            />
+          )}
         </List>
+        <EmptyList />
       </PageContent>
     </Container>
   );
 };
+
+export default ScrollToHOC(TaskList);
