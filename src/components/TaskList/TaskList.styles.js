@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { borderColor, backgroundColor } from "../../constants/theme";
+import {
+  borderColor,
+  backgroundColor,
+  primaryTextColor,
+  accentColor
+} from "../../constants/theme";
 
 export const Container = styled.div`
   display: flex;
@@ -27,9 +32,38 @@ export const PageContent = styled.div`
   flex-direction: column;
   flex-grow: 1;
   padding-bottom: 2rem;
+  font-size: 14px;
 `;
 
-export const List = styled.div``;
+export const FlaggedTasksInfo = styled.div`
+  display: flex;
+  align-items: center;
+  line-height: 3rem;
+  border-bottom: 1px solid ${borderColor};
+  color: ${primaryTextColor};
+  font-size: 16px;
+`;
+
+export const FlaggedTasksCount = styled.div`
+  width: 48px;
+  text-align: center;
+`;
+
+export const FlaggedTasksText = styled.div`
+  flex-grow: 1;
+`;
+
+export const FlaggedTasksButton = styled.button`
+  color: ${accentColor};
+  background-color: transparent;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 export const EmptyList = styled.div`
   flex-grow: 1;

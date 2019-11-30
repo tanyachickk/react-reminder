@@ -15,6 +15,7 @@ export const Input = styled.input`
       ? mainThemeColor
       : "transparent"};
   outline: none;
+  color: inherit;
   cursor: ${props => (props.readOnly ? "default" : "text")};
 
   ${props =>

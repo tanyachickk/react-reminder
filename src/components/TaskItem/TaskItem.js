@@ -15,7 +15,7 @@ import {
 import { TextInput } from "../TextInput";
 import { BaseCheckbox } from "../BaseCheckbox";
 
-export const TaskItem = ({ task, active, onSelect }) => {
+export const TaskItem = ({ task, active }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [currentValue, setCurrentValue] = useState(task.text);
   const deleteButtonRef = useRef();
@@ -80,7 +80,7 @@ export const TaskItem = ({ task, active, onSelect }) => {
   return (
     <Container active={active} onDoubleClick={() => setIsEditMode(true)}>
       <BaseCheckbox checked={task.flagged} onChange={onFlag} />
-      <Content>
+      <Content completed={task.flagged}>
         <TextInput
           value={currentValue}
           isEditMode={isEditMode}

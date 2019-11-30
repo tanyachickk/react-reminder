@@ -10,9 +10,12 @@ import {
   Container,
   PageHeader,
   PageTitle,
-  List,
   PageContent,
-  EmptyList
+  EmptyList,
+  FlaggedTasksInfo,
+  FlaggedTasksCount,
+  FlaggedTasksText,
+  FlaggedTasksButton
 } from "./TaskList.styles";
 import { TaskItem } from "../TaskItem";
 import { NewTask } from "../NewTask";
@@ -24,9 +27,10 @@ const TaskList = ({ scroll }) => {
   const [isAllowToCreateTask, setIsAllowToCreateTask] = useState(false);
   const [newTask, setNewTask] = useState("");
   const [isEditNewTask, setIsEditNewTask] = useState(false);
+  const [isShowCompletedTasks, setIsShowCompletedTasks] = useState(false);
   const { selectedGroup } = useSelectedGroupValue();
   const { user } = useSession();
-  const { tasks } = useTasks(user.uid, selectedGroup);
+  const { tasks, flaggedTasks } = useTasks(user.uid, selectedGroup);
   const { groups } = useGroups(user.uid);
   const listRef = useRef();
 
@@ -86,20 +90,33 @@ const TaskList = ({ scroll }) => {
         )}
       </PageHeader>
       <PageContent>
-        <List>
-          {tasks.map(task => (
+        {!!flaggedTasks.length && (
+          <FlaggedTasksInfo>
+            <FlaggedTasksCount>{flaggedTasks.length}</FlaggedTasksCount>
+            <FlaggedTasksText>completed</FlaggedTasksText>
+            <FlaggedTasksButton
+              onClick={() => setIsShowCompletedTasks(!isShowCompletedTasks)}
+            >
+              {isShowCompletedTasks ? "Hide" : "Show"}
+            </FlaggedTasksButton>
+          </FlaggedTasksInfo>
+        )}
+        {isShowCompletedTasks &&
+          flaggedTasks.map(task => (
             <TaskItem key={`${task.id}`} task={task}></TaskItem>
           ))}
-          {isAllowToCreateTask && (
-            <NewTask
-              value={newTask}
-              isEditMode={isEditNewTask}
-              createTask={createTask}
-              onClick={setIsEditNewTask}
-              onChange={setNewTask}
-            />
-          )}
-        </List>
+        {tasks.map(task => (
+          <TaskItem key={`${task.id}`} task={task}></TaskItem>
+        ))}
+        {isAllowToCreateTask && (
+          <NewTask
+            value={newTask}
+            isEditMode={isEditNewTask}
+            createTask={createTask}
+            onClick={setIsEditNewTask}
+            onChange={setNewTask}
+          />
+        )}
         <EmptyList />
       </PageContent>
     </Container>

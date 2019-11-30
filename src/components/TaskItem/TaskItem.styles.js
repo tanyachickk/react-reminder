@@ -4,7 +4,8 @@ import {
   activeTabBackgroundColor,
   highlightBackgroundColor,
   borderColor,
-  redColor
+  redColor,
+  primaryTextColor
 } from "../../constants/theme";
 
 export const DeleteButton = styled.button`
@@ -50,6 +51,7 @@ export const Content = styled.div`
   flex-grow: 1;
   margin-left: 0.75rem;
   height: 2.5rem;
+  color: ${props => (props.completed ? secondaryTextColor : primaryTextColor)};
 `;
 
 export const Date = styled.div`
