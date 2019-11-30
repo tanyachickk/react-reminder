@@ -13,7 +13,7 @@ import {
   List,
   PageContent,
   EmptyList
-} from "./TaskList.styled";
+} from "./TaskList.styles";
 import { TaskItem } from "../TaskItem";
 import { NewTask } from "../NewTask";
 import { ActionButton } from "../ActionButton";

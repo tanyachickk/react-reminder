@@ -8,7 +8,7 @@ import {
   TextDivider,
   TaskGroupListContainer,
   ProfileContainer
-} from "./Sidebar.styled";
+} from "./Sidebar.styles";
 import { TaskCategories } from "../TaskCategories";
 import { TaskGroupList } from "../TaskGroupList";
 import SearchInput from "../SearchInput/SearchInput";

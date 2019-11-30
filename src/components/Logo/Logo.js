@@ -1,6 +1,6 @@
 import React from "react";
 import { withTheme } from "styled-components";
-import { Container, Text, Image } from "./Logo.styled";
+import { Container, Text, Image } from "./Logo.styles";
 import * as LogoImage from "../../assets/images/reminders-logo.png";
 
 const Logo = () => {

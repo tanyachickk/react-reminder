@@ -2,7 +2,7 @@ import React from "react";
 import { FaPalette } from "react-icons/fa";
 import { withTheme } from "styled-components";
 import { useTheme } from "../../context/ThemeContext";
-import { Container } from "./Header.styled";
+import { Container } from "./Header.styles";
 
 const Header = ({ theme }) => {
   const themeToggle = useTheme();

@@ -14,7 +14,7 @@ import {
   AddButton,
   AddButtonText,
   AddInputContainer
-} from "./TaskGroupList.styled";
+} from "./TaskGroupList.styles";
 
 const defaultGroupValue = "New group";
 

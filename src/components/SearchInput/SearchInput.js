@@ -1,6 +1,6 @@
 import React from "react";
 import { withTheme } from "styled-components";
-import { Input, Container, Icon } from "./SearchInput.styled";
+import { Input, Container, Icon } from "./SearchInput.styles";
 import { IoIosSearch } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 

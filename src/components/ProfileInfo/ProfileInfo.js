@@ -1,6 +1,6 @@
 import React from "react";
 import { withTheme } from "styled-components";
-import { Container, Icon, User } from "./ProfileInfo.styled";
+import { Container, Icon, User } from "./ProfileInfo.styles";
 
 const ProfileInfo = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Content } from "./NewTask.styled";
+import { Container, Content } from "./NewTask.styles";
 import { TextInput } from "../TextInput";
 import { BaseCheckbox } from "../BaseCheckbox";
 

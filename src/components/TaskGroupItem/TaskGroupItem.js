@@ -8,7 +8,7 @@ import {
   Controls,
   DeleteButton,
   EditButton
-} from "./TaskGroupItem.styled";
+} from "./TaskGroupItem.styles";
 import { getEventPath } from "../../helpers";
 import { TextInput } from "../TextInput";
 

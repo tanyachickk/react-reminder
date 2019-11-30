@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { withTheme } from "styled-components";
 import { ReactPageClick } from "react-page-click";
-import { Input, Container } from "./TextInput.styled";
+import { Input, Container } from "./TextInput.styles";
 
 const TextInput = ({
   value,

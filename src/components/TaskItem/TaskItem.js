@@ -11,7 +11,7 @@ import {
   Date,
   ResetDateContainer,
   ResetDateButton
-} from "./TaskItem.styled";
+} from "./TaskItem.styles";
 import { TextInput } from "../TextInput";
 import { BaseCheckbox } from "../BaseCheckbox";
 
