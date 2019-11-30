@@ -11,6 +11,8 @@ export const useGroups = userId => {
       .where("userId", "==", userId)
       .orderBy("created");
 
+    console.log("FIREBASE USE GROUPS");
+
     unsubscribe = unsubscribe.onSnapshot(snapshot => {
       const allGroups = snapshot.docs.map(group => ({
         ...group.data(),

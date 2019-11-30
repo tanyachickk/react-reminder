@@ -5,6 +5,8 @@ export const useAuth = () => {
   const [user, setUser] = useState(firebase.auth().currentUser);
   const [isInitialized, setIsInitialized] = useState(false);
 
+  console.log("FIREBASE AUTH");
+
   const signIn = ({ email, password }) =>
     firebase.auth().signInWithEmailAndPassword(email, password);
 

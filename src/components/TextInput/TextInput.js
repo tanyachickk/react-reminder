@@ -38,7 +38,7 @@ const TextInput = ({
 
   return (
     <Container>
-      <ReactPageClick notify={() => onClickAway && onClickAway()}>
+      <ReactPageClick notify={() => isEditMode && onClickAway && onClickAway()}>
         <Input
           ref={inputRef}
           value={value}

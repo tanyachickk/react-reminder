@@ -1,3 +1,18 @@
 {
-  "searchPlaceholder": "Поиск"
+  "searchPlaceholder": "Поиск",
+  "confirmationCancel": "Отменить",
+  "deleteGroupConfirmationTitle": "Вы действительно хотите удалить",
+  "deleteGroupConfirmationText": "Удаление списка напоминаний удалит находящиеся в нем напоминания. Это действие нельзя отменить.",
+  "deleteGroupConfirmationAction": "Удалить",
+  "TODAY": "Сегодня",
+  "NEXT_WEEK": "На неделю",
+  "NEXT_MONTH": "На месяц",
+  "SCHEDULED": "Запланированные",
+  "FLAGGED": "Выполненные",
+  "ALL": "Все",
+  "taskGroupsDivider": "Мои списки",
+  "addNewTaskGroup": "Добавить список",
+  "completedTasksCountLabel": "завершено",
+  "showCompletedTasks": "Показать",
+  "hideCompletedTasks": "Скрыть"
 }

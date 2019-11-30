@@ -14,6 +14,8 @@ export const useTasks = (userId, selectedGroup) => {
       .where("userId", "==", userId)
       .orderBy("created");
 
+    console.log("FIREBASE USE TASKS");
+
     if (!collatedTasksExists(selectedGroup)) {
       unsubscribe = unsubscribe.where("groupId", "==", selectedGroup);
     }

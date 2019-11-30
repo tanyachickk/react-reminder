@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { firebase } from "../../firebase";
 import { useSession } from "../../context/UserContext";
 import { ScrollToHOC } from "react-scroll-to";
@@ -19,6 +20,7 @@ import {
 const defaultGroupValue = "New group";
 
 const TaskGroupList = ({ scroll }) => {
+  const { t } = useTranslation();
   const [showNewGroup, setShowNewGroup] = useState(false);
   const [groupName, setGroupName] = useState(defaultGroupValue);
   const { selectedGroup, setSelectedGroup } = useSelectedGroupValue();
@@ -31,6 +33,7 @@ const TaskGroupList = ({ scroll }) => {
     const name = groupName;
     setGroupName(defaultGroupValue);
     setShowNewGroup(false);
+    console.log("FIREBASE ADD GROUP");
     if (name) {
       firebase
         .firestore()
@@ -92,7 +95,7 @@ const TaskGroupList = ({ scroll }) => {
       </List>
       <AddButton onClick={onShowNewGroup}>
         <IoIosAddCircle />
-        <AddButtonText>Add new list</AddButtonText>
+        <AddButtonText>{t("addNewTaskGroup")}</AddButtonText>
       </AddButton>
     </Container>
   );

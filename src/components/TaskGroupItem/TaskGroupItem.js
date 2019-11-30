@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { FiEdit, FiTrash } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 import { useSelectedGroupValue } from "../../context/SelectedGroupContext";
 import { firebase } from "../../firebase";
 import {
@@ -11,9 +12,13 @@ import {
 } from "./TaskGroupItem.styles";
 import { getEventPath } from "../../helpers";
 import { TextInput } from "../TextInput";
+import { ConfirmationModal } from "../ConfirmationModal";
 
 export const TaskGroupItem = ({ group, active, onSelect }) => {
+  const { t } = useTranslation();
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isShowConfirmation, setIsShowConformation] = useState(false);
+  const [relatedTasks, setRelatedTasks] = useState(null);
   const [currentValue, setCurrentValue] = useState(group.name);
   const deleteButtonRef = useRef();
   const editButtonRef = useRef();
@@ -30,6 +35,7 @@ export const TaskGroupItem = ({ group, active, onSelect }) => {
   };
 
   const deleteGroup = () => {
+    console.log("FIREBASE DELETE GROUP");
     firebase
       .firestore()
       .collection("groups")
@@ -40,9 +46,29 @@ export const TaskGroupItem = ({ group, active, onSelect }) => {
           setSelectedGroup("ALL");
         }
       });
+
+    setRelatedTasks(null);
+  };
+
+  const checkGroupTasks = async () => {
+    console.log("FIREBASE GET RELATED TASKS");
+    const relatedTasksSnapshot = await firebase
+      .firestore()
+      .collection("tasks")
+      .where("groupId", "==", group.id)
+      .get();
+
+    if (!relatedTasksSnapshot.empty) {
+      setIsShowConformation(true);
+      setRelatedTasks(relatedTasksSnapshot);
+      return;
+    }
+    console.log(relatedTasks);
+    deleteGroup();
   };
 
   const editGroup = () => {
+    console.log("FIREBASE EDIT GROUP");
     if (!currentValue) {
       return;
     }
@@ -77,11 +103,18 @@ export const TaskGroupItem = ({ group, active, onSelect }) => {
           <EditButton ref={editButtonRef} onClick={() => setIsEditMode(true)}>
             <FiEdit />
           </EditButton>
-          <DeleteButton ref={deleteButtonRef} onClick={deleteGroup}>
+          <DeleteButton ref={deleteButtonRef} onClick={checkGroupTasks}>
             <FiTrash />
           </DeleteButton>
         </Controls>
       )}
+      <ConfirmationModal
+        isVisible={isShowConfirmation}
+        title={t("deleteGroupConfirmationTitle")}
+        text={t("deleteGroupConfirmationText")}
+        confirmText={t("deleteGroupConfirmationAction")}
+        onCancel={() => setIsShowConformation(false)}
+      ></ConfirmationModal>
     </Container>
   );
 };

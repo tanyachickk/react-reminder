@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { contrastColor } from "../../constants/theme";
+import { contrastColor, overlayBackgroundColor } from "../../constants/theme";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -7,7 +7,7 @@ export const Overlay = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: ${overlayBackgroundColor};
   z-index: 100;
 `;
 

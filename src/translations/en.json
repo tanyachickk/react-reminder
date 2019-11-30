@@ -1,3 +1,18 @@
 {
-  "searchPlaceholder": "Search"
+  "searchPlaceholder": "Search",
+  "confirmationCancel": "Cancel",
+  "deleteGroupConfirmationTitle": "Are you sure you want to delete",
+  "deleteGroupConfirmationText": "Deleting a reminder list will delete the reminders in it. This action cannot be reverted.",
+  "deleteGroupConfirmationAction": "Delete",
+  "TODAY": "Today",
+  "NEXT_WEEK": "Next week",
+  "NEXT_MONTH": "Next month",
+  "SCHEDULED": "Scheduled",
+  "FLAGGED": "Flagged",
+  "ALL": "All",
+  "taskGroupsDivider": "My lists",
+  "addNewTaskGroup": "Add new list",
+  "completedTasksCountLabel": "completed",
+  "showCompletedTasks": "Show",
+  "hideCompletedTasks": "Hide"
 }

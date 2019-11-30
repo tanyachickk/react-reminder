@@ -60,6 +60,11 @@ export const shadowColor = theme("mode", {
   dark: "rgba(0,0,0,0.05)"
 });
 
+export const overlayBackgroundColor = theme("mode", {
+  light: "rgba(255,255,255,0.5)",
+  dark: "rgba(0,0,0,0.5)"
+});
+
 export const buttonBackgroundColor = theme("mode", {
   light: "#222",
   dark: "#eee"

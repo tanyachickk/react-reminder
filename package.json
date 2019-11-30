@@ -12,6 +12,7 @@
     "react-i18next": "^11.2.3",
     "react-icons": "^3.8.0",
     "react-page-click": "^4.0.4",
+    "react-pose": "^4.0.10",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-scroll-to": "^3.0.0-beta.3",

@@ -5,6 +5,7 @@ import { useSession } from "../../context/UserContext";
 import { useTasks } from "../../hooks/useTasks";
 import { collatedTasksExists } from "../../helpers";
 import { useGroups } from "../../hooks/useGroups";
+import { useTranslation } from "react-i18next";
 import { useSelectedGroupValue } from "../../context/SelectedGroupContext";
 import {
   Container,
@@ -23,6 +24,7 @@ import { ActionButton } from "../ActionButton";
 import { IoIosAdd } from "react-icons/io";
 
 const TaskList = ({ scroll }) => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState("");
   const [isAllowToCreateTask, setIsAllowToCreateTask] = useState(false);
   const [newTask, setNewTask] = useState("");
@@ -37,12 +39,14 @@ const TaskList = ({ scroll }) => {
   useEffect(() => {
     const taskCaterory = collatedTasksExists(selectedGroup);
     if (taskCaterory) {
-      setTitle(taskCaterory.name);
+      setTitle(t(taskCaterory.key));
       setIsAllowToCreateTask(false);
     } else {
       const taskGroup = groups.find(group => group.id === selectedGroup);
-      setTitle(taskGroup.name);
-      setIsAllowToCreateTask(true);
+      if (taskGroup) {
+        setTitle(taskGroup.name);
+        setIsAllowToCreateTask(true);
+      }
     }
   }, [selectedGroup, groups]);
 
@@ -57,6 +61,7 @@ const TaskList = ({ scroll }) => {
   };
 
   const createTask = () => {
+    console.log("FIREBASE CREATE TASK");
     setIsEditNewTask(false);
     if (!newTask) {
       return;
@@ -93,11 +98,13 @@ const TaskList = ({ scroll }) => {
         {!!flaggedTasks.length && (
           <FlaggedTasksInfo>
             <FlaggedTasksCount>{flaggedTasks.length}</FlaggedTasksCount>
-            <FlaggedTasksText>completed</FlaggedTasksText>
+            <FlaggedTasksText>{t("completedTasksCountLabel")}</FlaggedTasksText>
             <FlaggedTasksButton
               onClick={() => setIsShowCompletedTasks(!isShowCompletedTasks)}
             >
-              {isShowCompletedTasks ? "Hide" : "Show"}
+              {isShowCompletedTasks
+                ? t("hideCompletedTasks")
+                : t("showCompletedTasks")}
             </FlaggedTasksButton>
           </FlaggedTasksInfo>
         )}

@@ -1,5 +1,6 @@
 import React from "react";
 import { withTheme } from "styled-components";
+import { useTranslation } from "react-i18next";
 import { Logo } from "../Logo";
 import {
   Container,
@@ -15,6 +16,8 @@ import SearchInput from "../SearchInput/SearchInput";
 import { ProfileInfo } from "../ProfileInfo";
 
 const Sidebar = ({ onUserInfoClick }) => {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <LogoLink href="/">
@@ -24,7 +27,7 @@ const Sidebar = ({ onUserInfoClick }) => {
         <SearchInput />
       </SearchInputContainer>
       <TaskCategories />
-      <TextDivider>My lists</TextDivider>
+      <TextDivider>{t("taskGroupsDivider")}</TextDivider>
       <TaskGroupListContainer>
         <TaskGroupList />
       </TaskGroupListContainer>
