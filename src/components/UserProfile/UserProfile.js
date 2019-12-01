@@ -24,7 +24,7 @@ import { useSession } from "../../context/UserContext.js";
 import { LanguageControl } from "../LanguageControl/index.js";
 
 const UserProfile = ({ theme, isVisible, onClose }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const themeToggle = useTheme();
   const overlayRef = useRef();
   const { user, signOut, updateUsername } = useSession();

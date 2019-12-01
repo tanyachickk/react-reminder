@@ -23,6 +23,12 @@ export const Content = styled.div`
   margin-bottom: 100px;
 `;
 
+export const LanguageContainer = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 16px;
+`;
+
 export const LoadingOverlay = styled.div`
   position: fixed;
   top: 0;

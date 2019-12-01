@@ -11,7 +11,7 @@ import { TaskList } from "../TaskList";
 const InnerPage = () => {
   const history = useHistory();
   const { user, isInitialized } = useSession();
-  const [isShowProfile, setIsShowProfile] = useState(true);
+  const [isShowProfile, setIsShowProfile] = useState(false);
 
   useEffect(() => {
     if (isInitialized && !user) {

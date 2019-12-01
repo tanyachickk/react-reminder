@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { LoginPage } from "../LoginPage";
 import {
   Form,
@@ -16,6 +17,7 @@ import { ActionButton } from "../ActionButton";
 import { useSession } from "../../context/UserContext";
 
 export const SignInPage = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("test@test.com");
   const [password, setPassword] = useState("123456");
   const [isLoading, setIsLoading] = useState(false);
@@ -40,11 +42,11 @@ export const SignInPage = () => {
   return (
     <LoginPage loading={isLoading}>
       <Form onSubmit={e => handleSubmit(e)}>
-        <Title>Sign in to Reminders</Title>
+        <Title>{t("signInTitle")} Reminders</Title>
         <InputContainer>
           <BaseInput
             type="email"
-            placeholder="E-mail"
+            placeholder={t("emailPlaceholder")}
             required={true}
             value={email}
             onChange={value => setEmail(value)}
@@ -53,7 +55,7 @@ export const SignInPage = () => {
         <InputContainer>
           <BaseInput
             type="password"
-            placeholder="Password"
+            placeholder={t("passwordPlaceholder")}
             required={true}
             value={password}
             onChange={value => setPassword(value)}
@@ -61,13 +63,13 @@ export const SignInPage = () => {
         </InputContainer>
         <ButtonContainer>
           <ActionButton color="primary" type="submit">
-            Sign in
+            {t("signInButton")}
           </ActionButton>
         </ButtonContainer>
         <Divider src={DividerImage}></Divider>
         <SignUpInfo>
-          <SignUpQuestion>Don't have an account?</SignUpQuestion>
-          <SignUpLink to="/sign-up">Sign up</SignUpLink>
+          <SignUpQuestion>{t("dontHaveAnAcoountQuestion")}</SignUpQuestion>
+          <SignUpLink to="/sign-up">{t("signUpButton")}</SignUpLink>
         </SignUpInfo>
       </Form>
     </LoginPage>

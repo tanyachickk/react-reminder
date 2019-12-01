@@ -18,5 +18,14 @@
   "languageLabel": "Язык",
   "darkThemeLabel": "Темная тема",
   "pushNotificationsLabel": "Push уведомления",
-  "logoutButton": "Выйти"
+  "logoutButton": "Выйти",
+  "signInTitle": "Вход в",
+  "emailPlaceholder": "E-mail",
+  "passwordPlaceholder": "Пароль",
+  "fullNamePlaceholder": "Полное имя",
+  "signInButton": "Войти",
+  "dontHaveAnAcoountQuestion": "Еще нет аккаунта?",
+  "haveAnAcoountQuestion": "Уже есть аккаунт?",
+  "signUpButton": "Зарегистироваться",
+  "signUpTitle": "Регистрация в"
 }

@@ -6,9 +6,11 @@ import {
   Container,
   Content,
   AppLogo,
-  LoadingOverlay
+  LoadingOverlay,
+  LanguageContainer
 } from "./LoginPage.styles";
 import { useSession } from "../../context/UserContext";
+import { LanguageControl } from "../LanguageControl";
 
 export const LoginPage = ({ children, loading }) => {
   const { user, isInitialized } = useSession();
@@ -22,6 +24,9 @@ export const LoginPage = ({ children, loading }) => {
 
   return (
     <Container>
+      <LanguageContainer>
+        <LanguageControl />
+      </LanguageContainer>
       <AppLogo src={LogoImage} />
       <Content>{children}</Content>
       {loading && (

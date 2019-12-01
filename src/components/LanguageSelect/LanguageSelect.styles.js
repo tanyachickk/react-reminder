@@ -44,7 +44,8 @@ export const ArrowContainer = styled.div`
   margin-left: auto;
   margin-right: 0;
   color: ${secondaryTextColor};
-  transform: ${props => props.isOpen && "rotate(180deg) translateY(25%)"};
+  transform: ${props =>
+    props.isOpen ? "rotate(180deg) translateY(10%)" : "translateY(15%)"};
   transition: transform 0.2s ease;
 `;
 

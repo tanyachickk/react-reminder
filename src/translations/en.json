@@ -18,5 +18,14 @@
   "languageLabel": "Language",
   "darkThemeLabel": "Dark theme",
   "pushNotificationsLabel": "Push notifications",
-  "logoutButton": "Log Out"
+  "logoutButton": "Log Out",
+  "signInTitle": "Sign in to",
+  "emailPlaceholder": "E-mail",
+  "passwordPlaceholder": "Password",
+  "fullNamePlaceholder": "Full name",
+  "signInButton": "Sign in",
+  "dontHaveAnAcoountQuestion": "Don't have an account?",
+  "haveAnAcoountQuestion": "Have an account?",
+  "signUpButton": "Sign up",
+  "signUpTitle": "Sign up to"
 }

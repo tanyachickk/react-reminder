@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { LoginPage } from "../LoginPage";
 import {
   Form,
@@ -16,6 +17,7 @@ import { ActionButton } from "../ActionButton";
 import { useSession } from "../../context/UserContext";
 
 export const SignUpPage = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -40,11 +42,11 @@ export const SignUpPage = () => {
   return (
     <LoginPage loading={isLoading}>
       <Form onSubmit={e => handleSubmit(e)}>
-        <Title>Sign up to Reminders</Title>
+        <Title>{t("signUpTitle")} Reminders</Title>
         <InputContainer>
           <BaseInput
             type="text"
-            placeholder="Full name"
+            placeholder={t("fullNamePlaceholder")}
             required={true}
             value={name}
             onChange={value => setName(value)}
@@ -53,7 +55,7 @@ export const SignUpPage = () => {
         <InputContainer>
           <BaseInput
             type="email"
-            placeholder="E-mail"
+            placeholder={t("emailPlaceholder")}
             required={true}
             value={email}
             onChange={value => setEmail(value)}
@@ -62,7 +64,7 @@ export const SignUpPage = () => {
         <InputContainer>
           <BaseInput
             type="password"
-            placeholder="Password"
+            placeholder={t("passwordPlaceholder")}
             required={true}
             value={password}
             onChange={value => setPassword(value)}
@@ -70,13 +72,13 @@ export const SignUpPage = () => {
         </InputContainer>
         <ButtonContainer>
           <ActionButton color="primary" type="submit">
-            Sign up
+            {t("signUpButton")}
           </ActionButton>
         </ButtonContainer>
         <Divider src={DividerImage}></Divider>
         <SignInInfo>
-          <SignInQuestion>Have an account?</SignInQuestion>
-          <SignInLink to="/sign-in">Sign in</SignInLink>
+          <SignInQuestion>{t("haveAnAcoountQuestion")}</SignInQuestion>
+          <SignInLink to="/sign-in">{t("signInButton")}</SignInLink>
         </SignInInfo>
       </Form>
     </LoginPage>
