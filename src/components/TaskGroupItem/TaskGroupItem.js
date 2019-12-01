@@ -35,7 +35,6 @@ export const TaskGroupItem = ({ group, active, onSelect }) => {
   };
 
   const deleteGroup = () => {
-    console.log("FIREBASE DELETE GROUP");
     firebase
       .firestore()
       .collection("groups")
@@ -59,7 +58,6 @@ export const TaskGroupItem = ({ group, active, onSelect }) => {
   };
 
   const checkGroupTasks = async () => {
-    console.log("FIREBASE GET RELATED TASKS");
     const relatedTasksSnapshot = await firebase
       .firestore()
       .collection("tasks")
@@ -76,7 +74,6 @@ export const TaskGroupItem = ({ group, active, onSelect }) => {
   };
 
   const editGroup = () => {
-    console.log("FIREBASE EDIT GROUP");
     if (!currentValue) {
       return;
     }

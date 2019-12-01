@@ -7,8 +7,6 @@ import { useSession } from "../../context/UserContext";
 const ProfileInfo = () => {
   const { user } = useSession();
 
-  console.log(user);
-
   return (
     <Container>
       <UserAvatar size={36} name={user.displayName} />

@@ -33,7 +33,6 @@ export const useAuth = () => {
   };
 
   useEffect(() => {
-    console.log("FIREBASE AUTH");
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
         setUser({ ...user, uid: user.uid });

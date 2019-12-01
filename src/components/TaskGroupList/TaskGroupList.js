@@ -33,7 +33,6 @@ const TaskGroupList = ({ scroll }) => {
     const name = groupName;
     setGroupName(defaultGroupValue);
     setShowNewGroup(false);
-    console.log("FIREBASE ADD GROUP");
     if (name) {
       firebase
         .firestore()

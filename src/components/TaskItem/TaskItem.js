@@ -22,7 +22,6 @@ export const TaskItem = ({ task }) => {
   const editButtonRef = useRef();
 
   const deleteTask = () => {
-    console.log("FIREBASE DELETE TASK");
     firebase
       .firestore()
       .collection("tasks")
@@ -35,7 +34,6 @@ export const TaskItem = ({ task }) => {
       return;
     }
     setIsEditMode(false);
-    console.log("FIREBASE EDIT TASK");
     firebase
       .firestore()
       .collection("tasks")
@@ -46,7 +44,6 @@ export const TaskItem = ({ task }) => {
   };
 
   const onFlag = value => {
-    console.log("FIREBASE FLAG TASK");
     firebase
       .firestore()
       .collection("tasks")
@@ -58,7 +55,6 @@ export const TaskItem = ({ task }) => {
   };
 
   const setTaskDate = date => {
-    console.log("FIREBASE SET TASK DATE");
     firebase
       .firestore()
       .collection("tasks")

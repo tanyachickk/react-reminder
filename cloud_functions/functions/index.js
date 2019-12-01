@@ -9,13 +9,11 @@ exports.deleteRelatedTasks = functions.firestore
   .document("groups/{groupId}")
   .onDelete((change, context) => {
     const groupId = context.params.groupId;
-    console.log("DELETE", groupId);
     db.collection("tasks")
       .where("groupId", "==", groupId)
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {
-          console.log(`Found document at ${documentSnapshot.id}`);
           db.collection("tasks")
             .doc(documentSnapshot.id)
             .delete();

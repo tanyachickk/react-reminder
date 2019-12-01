@@ -76,7 +76,6 @@ const TaskList = ({ scroll }) => {
   };
 
   const createTask = () => {
-    console.log("FIREBASE CREATE TASK");
     setIsEditNewTask(false);
     if (!newTask) {
       return;
