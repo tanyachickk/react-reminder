@@ -14,5 +14,9 @@
   "addNewTaskGroup": "Add new list",
   "completedTasksCountLabel": "completed",
   "showCompletedTasks": "Show",
-  "hideCompletedTasks": "Hide"
+  "hideCompletedTasks": "Hide",
+  "languageLabel": "Language",
+  "darkThemeLabel": "Dark theme",
+  "pushNotificationsLabel": "Push notifications",
+  "logoutButton": "Log Out"
 }

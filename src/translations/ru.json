@@ -14,5 +14,9 @@
   "addNewTaskGroup": "Добавить список",
   "completedTasksCountLabel": "завершено",
   "showCompletedTasks": "Показать",
-  "hideCompletedTasks": "Скрыть"
+  "hideCompletedTasks": "Скрыть",
+  "languageLabel": "Язык",
+  "darkThemeLabel": "Темная тема",
+  "pushNotificationsLabel": "Push уведомления",
+  "logoutButton": "Выйти"
 }

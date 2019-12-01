@@ -9130,6 +9130,13 @@ react-error-overlay@^6.0.3:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.3.tgz#c378c4b0a21e88b2e159a3e62b2f531fd63bf60d"
   integrity sha512-bOUvMWFQVk5oz8Ded9Xb7WVdEi3QGLC8tH7HmYP0Fdp4Bn3qw0tRFmr5TW6mvahzvmrK4a6bqWGfCevBflP+Xw==
 
+react-flags-select@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/react-flags-select/-/react-flags-select-1.1.10.tgz#3ad8bd8bbc8ef206bb41d2fa3ac90f522826dbda"
+  integrity sha512-8bGih8XVIXwXpuio0I7MqU3nqh82Hdj28rS21HzNUAVdKGtO3lqY6TLDNSTpanAupXSXGfkajkpFQv5XsRvUfA==
+  dependencies:
+    prop-types "^15.5.8"
+
 react-i18next@^11.2.3:
   version "11.2.3"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.2.3.tgz#42ef85c461c08638a2f771d2b73b8853b35c3ab7"

@@ -54,7 +54,7 @@ const TaskList = ({ scroll }) => {
   useEffect(() => {
     const taskCaterory = collatedTasksExists(selectedGroup);
     if (taskCaterory) {
-      setTitle(t(taskCaterory.key));
+      setTitle(taskCaterory.key);
       setIsAllowToCreateTask(false);
     } else {
       const taskGroup = groups.find(group => group.id === selectedGroup);
@@ -102,7 +102,7 @@ const TaskList = ({ scroll }) => {
   return (
     <Container ref={listRef}>
       <PageHeader>
-        <PageTitle>{title}</PageTitle>
+        <PageTitle>{t(title)}</PageTitle>
         {isAllowToCreateTask && (
           <ActionButton withPadding={false} onClick={onAddButtonClick}>
             <IoIosAdd size={22} />

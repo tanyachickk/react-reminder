@@ -13,6 +13,7 @@ import { SignUpPage } from "./components/SignUpPage";
 import { InnerPage } from "./components/InnerPage";
 import { Container } from "./App.styles";
 import "react-datepicker/dist/react-datepicker.css";
+import "react-flags-select/css/react-flags-select.css";
 import "./App.css";
 
 export const App = () => {

@@ -86,8 +86,9 @@ export const EmailContainer = styled.div`
   cursor: default;
 `;
 
-export const ThemeContainer = styled.div`
+export const LanguageContainer = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin: 10vh 0 12px;
   padding: 0 10px;
@@ -95,13 +96,36 @@ export const ThemeContainer = styled.div`
   color: ${primaryTextColor};
 `;
 
-export const NotificationsContainer = styled.div`
+export const ThemeContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 12px 0;
   padding: 0 10px;
   font-size: 14px;
   color: ${primaryTextColor};
+`;
+
+export const NotificationsContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+  padding: 0 10px;
+  font-size: 14px;
+  color: ${primaryTextColor};
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: ${backgroundColor};
+    opacity: 0.75;
+  }
 `;
 
 export const Text = styled.h1`

@@ -24,7 +24,7 @@ const Sidebar = ({ onUserInfoClick }) => {
         <Logo />
       </LogoLink>
       <SearchInputContainer>
-        <SearchInput />
+        <SearchInput disabled={true} />
       </SearchInputContainer>
       <TaskCategories />
       <TextDivider>{t("taskGroupsDivider")}</TextDivider>

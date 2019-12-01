@@ -4,12 +4,12 @@ import { Input, Container, Icon } from "./SearchInput.styles";
 import { IoIosSearch } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
-const SearchInput = () => {
+const SearchInput = ({ disabled }) => {
   const { t } = useTranslation();
 
   return (
-    <Container>
-      <Input placeholder={t("searchPlaceholder")} />
+    <Container disabled={disabled}>
+      <Input disabled={disabled} placeholder={t("searchPlaceholder")} />
       <Icon>
         <IoIosSearch />
       </Icon>

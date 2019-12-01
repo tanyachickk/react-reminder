@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { PoseGroup } from "react-pose";
 import { withTheme } from "styled-components";
 import Switch from "react-switch";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "../../context/ThemeContext.js";
 import {
   Container,
@@ -13,14 +14,17 @@ import {
   UsernameContainer,
   EmailContainer,
   ThemeContainer,
-  NotificationsContainer
+  NotificationsContainer,
+  LanguageContainer
 } from "./UserProfile.styles";
 import { UserAvatar } from "../UserAvatar";
 import { TextInput } from "../TextInput";
 import { blueColor, grayColor } from "../../constants/theme.js";
 import { useSession } from "../../context/UserContext.js";
+import { LanguageControl } from "../LanguageControl/index.js";
 
 const UserProfile = ({ theme, isVisible, onClose }) => {
+  const { t, i18n } = useTranslation();
   const themeToggle = useTheme();
   const overlayRef = useRef();
   const { user, signOut, updateUsername } = useSession();
@@ -70,8 +74,12 @@ const UserProfile = ({ theme, isVisible, onClose }) => {
                   />
                 </UsernameContainer>
                 <EmailContainer>{user.email || ""}</EmailContainer>
+                <LanguageContainer>
+                  {t("languageLabel")}
+                  <LanguageControl />
+                </LanguageContainer>
                 <ThemeContainer>
-                  Dark theme
+                  {t("darkThemeLabel")}
                   <Switch
                     checked={theme.mode === "dark"}
                     onColor={blueColor}
@@ -85,9 +93,9 @@ const UserProfile = ({ theme, isVisible, onClose }) => {
                   />
                 </ThemeContainer>
                 <NotificationsContainer>
-                  Push notifications
+                  {t("pushNotificationsLabel")}
                   <Switch
-                    checked={true}
+                    checked={false}
                     onColor={blueColor}
                     offColor={grayColor}
                     activeBoxShadow=""
@@ -98,7 +106,9 @@ const UserProfile = ({ theme, isVisible, onClose }) => {
                     onChange={() => themeToggle.toggle()}
                   />
                 </NotificationsContainer>
-                <LogoutButton onClick={signOut}>Log Out</LogoutButton>
+                <LogoutButton onClick={signOut}>
+                  {t("logoutButton")}
+                </LogoutButton>
               </Container>
             </PoseContent>
           </Overlay>

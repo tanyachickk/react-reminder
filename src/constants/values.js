@@ -13,3 +13,8 @@ export const collatedTasks = [
   { key: "FLAGGED", name: "Flagged", icon: IoIosFlag },
   { key: "ALL", name: "All", icon: IoIosArchive }
 ];
+
+export const languages = {
+  EN: "English",
+  RU: "Русский"
+};
