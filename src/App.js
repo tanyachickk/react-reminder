@@ -23,18 +23,20 @@ export const App = () => {
           <Route
             render={({ location }) => (
               <PoseGroup>
-                <Container key={location.key}>
+                <Container key={location.pathname}>
                   <Switch location={location}>
-                    <Route path="/sign-in">
-                      <SignInPage />
-                    </Route>
-                    <Route path="/sign-up">
-                      <SignUpPage />
-                    </Route>
-                    <Route exact path="/">
-                      <InnerPage />
-                    </Route>
-                    <Redirect to={{ pathname: "/" }}></Redirect>
+                    <Route
+                      path="/sign-in"
+                      component={SignInPage}
+                      key="sign-in"
+                    />
+                    <Route
+                      path="/sign-up"
+                      component={SignUpPage}
+                      key="sign-up"
+                    />
+                    <Route exact path="/" component={InnerPage} key="main" />
+                    <Redirect to="/"></Redirect>
                   </Switch>
                 </Container>
               </PoseGroup>

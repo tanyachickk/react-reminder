@@ -17,7 +17,7 @@ const InnerPage = () => {
     if (isInitialized && !user) {
       history.replace({ pathname: "/sign-in" });
     }
-  });
+  }, [isInitialized, user]);
 
   return isInitialized && !!user ? (
     <SelectedGroupProvider>
