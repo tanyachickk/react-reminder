@@ -89,7 +89,7 @@ const TaskList = ({ scroll }) => {
       <PageHeader>
         <PageTitle>{title}</PageTitle>
         {isAllowToCreateTask && (
-          <ActionButton onClick={onAddButtonClick}>
+          <ActionButton withPadding={false} onClick={onAddButtonClick}>
             <IoIosAdd size={22} />
           </ActionButton>
         )}

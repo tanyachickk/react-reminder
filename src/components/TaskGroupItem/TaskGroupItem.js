@@ -46,7 +46,15 @@ export const TaskGroupItem = ({ group, active, onSelect }) => {
           setSelectedGroup("ALL");
         }
       });
-
+    if (relatedTasks) {
+      relatedTasks.forEach(documentSnapshot => {
+        firebase
+          .firestore()
+          .collection("tasks")
+          .doc(documentSnapshot.id)
+          .delete();
+      });
+    }
     setRelatedTasks(null);
   };
 
@@ -61,9 +69,9 @@ export const TaskGroupItem = ({ group, active, onSelect }) => {
     if (!relatedTasksSnapshot.empty) {
       setIsShowConformation(true);
       setRelatedTasks(relatedTasksSnapshot);
+      setSelectedGroup(group.id);
       return;
     }
-    console.log(relatedTasks);
     deleteGroup();
   };
 
@@ -110,10 +118,11 @@ export const TaskGroupItem = ({ group, active, onSelect }) => {
       )}
       <ConfirmationModal
         isVisible={isShowConfirmation}
-        title={t("deleteGroupConfirmationTitle")}
+        title={t("deleteGroupConfirmationTitle") + ` "${group.name}"?`}
         text={t("deleteGroupConfirmationText")}
         confirmText={t("deleteGroupConfirmationAction")}
         onCancel={() => setIsShowConformation(false)}
+        onConfirm={deleteGroup}
       ></ConfirmationModal>
     </Container>
   );

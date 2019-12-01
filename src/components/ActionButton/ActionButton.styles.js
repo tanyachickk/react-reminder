@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import {
-  accentColor,
   borderColor,
   primaryTextColor,
   backgroundColor,
@@ -16,7 +15,7 @@ import {
 export const Button = styled.button`
   color: ${primaryTextColor};
   line-height: 1;
-  padding: 0.4em 1.5em;
+  padding: ${props => (props.withPadding ? "0.4em 1.5em" : "0 1em")};
   background-color: ${backgroundColor};
   border: 1px solid ${borderColor};
   border-radius: 4px;
@@ -29,10 +28,7 @@ export const Button = styled.button`
   }
 
   &:active {
-    color: white;
-    background-color: ${accentColor};
-    box-shadow: none;
-    border-color: transparent;
+    background-color: ${borderColor};
   }
 
   ${props =>

@@ -7,7 +7,8 @@ import {
   Body,
   Title,
   Text,
-  Actions
+  Actions,
+  ActionButtonContainer
 } from "./ConfirmationModal.styles";
 import { Modal } from "../Modal";
 
@@ -28,10 +29,16 @@ const ConfirmationModal = ({
           <Text>{text}</Text>
         </Body>
         <Actions>
-          <ActionButton onClick={onCancel}>
-            {t("confirmationCancel")}
-          </ActionButton>
-          <ActionButton onClick={onConfirm}>{t(confirmText)}</ActionButton>
+          <ActionButtonContainer>
+            <ActionButton onClick={onCancel}>
+              {t("confirmationCancel")}
+            </ActionButton>
+          </ActionButtonContainer>
+          <ActionButtonContainer>
+            <ActionButton color="primary" onClick={onConfirm}>
+              {t(confirmText)}
+            </ActionButton>
+          </ActionButtonContainer>
         </Actions>
       </Content>
     </Modal>

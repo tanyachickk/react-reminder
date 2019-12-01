@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import posed from "react-pose";
-import { overlayBackgroundColor, backgroundColor } from "../../constants/theme";
+import {
+  overlayBackgroundColor,
+  backgroundColor,
+  shadowColor
+} from "../../constants/theme";
 
 const PoseOverlay = posed.div({
   enter: {
@@ -37,4 +41,5 @@ export const Overlay = styled(PoseOverlay)`
 export const Content = styled(PoseContent)`
   padding: 20px;
   background-color: ${backgroundColor};
+  box-shadow: 0 5px 10px 0px ${shadowColor}, 0 3px 5px 1px ${shadowColor};
 `;
