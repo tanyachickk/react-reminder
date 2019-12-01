@@ -26,7 +26,10 @@ const InnerPage = () => {
         sidebar={<Sidebar onUserInfoClick={() => setIsShowProfile(true)} />}
         content={<TaskList />}
       />
-      {isShowProfile && <UserProfile onClose={() => setIsShowProfile(false)} />}
+      <UserProfile
+        isVisible={isShowProfile}
+        onClose={() => setIsShowProfile(false)}
+      />
     </SelectedGroupProvider>
   ) : null;
 };

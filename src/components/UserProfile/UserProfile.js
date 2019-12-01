@@ -1,13 +1,35 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { PoseGroup } from "react-pose";
 import { withTheme } from "styled-components";
-import { useTheme } from "../../context/ThemeContext";
-import { Container, Overlay } from "./UserProfile.styles";
-import { useAuth } from "../../hooks/useAuth";
+import Switch from "react-switch";
+import { useTheme } from "../../context/ThemeContext.js";
+import {
+  Container,
+  Overlay,
+  PoseOverlay,
+  PoseContent,
+  LogoutButton,
+  AvatarContainer,
+  UsernameContainer,
+  EmailContainer,
+  ThemeContainer,
+  NotificationsContainer
+} from "./UserProfile.styles";
+import { UserAvatar } from "../UserAvatar";
+import { TextInput } from "../TextInput";
+import { blueColor, grayColor } from "../../constants/theme.js";
+import { useSession } from "../../context/UserContext.js";
 
-const UserProfile = ({ theme, onClose }) => {
+const UserProfile = ({ theme, isVisible, onClose }) => {
   const themeToggle = useTheme();
   const overlayRef = useRef();
-  const [, { signOut }] = useAuth();
+  const { user, signOut, updateUsername } = useSession();
+  const [currentName, setCurrentName] = useState("");
+  const [isEditName, setIsEditName] = useState(false);
+
+  useEffect(() => {
+    setCurrentName((user && user.displayName) || "");
+  }, [user]);
 
   const onOverlayClick = e => {
     if (e.target === overlayRef.current) {
@@ -15,20 +37,74 @@ const UserProfile = ({ theme, onClose }) => {
     }
   };
 
+  const onChangeUsername = value => {
+    setIsEditName(true);
+    setCurrentName(value);
+  };
+
+  const saveUsername = () => {
+    if (user && currentName) {
+      updateUsername(currentName);
+    }
+    setIsEditName(false);
+  };
+
   return (
-    <Overlay ref={overlayRef} onClick={onOverlayClick}>
-      <Container>
-        <h1>Profile</h1>
-        <div>
-          <button onClick={() => themeToggle.toggle()}>
-            {theme.mode === "dark"
-              ? "Switch to Light Mode"
-              : "Switch to Dark Mode"}
-          </button>
-        </div>
-        <button onClick={signOut}>Logout</button>
-      </Container>
-    </Overlay>
+    <PoseGroup>
+      {isVisible && (
+        <PoseOverlay key="overlay">
+          <Overlay ref={overlayRef} onClick={onOverlayClick}>
+            <PoseContent key="content">
+              <Container>
+                <AvatarContainer>
+                  <UserAvatar size={84} name={user.displayName}></UserAvatar>
+                </AvatarContainer>
+                <UsernameContainer>
+                  <TextInput
+                    value={currentName}
+                    isEditMode={isEditName}
+                    onChange={onChangeUsername}
+                    onEnter={saveUsername}
+                    onEscape={saveUsername}
+                    onClickAway={saveUsername}
+                  />
+                </UsernameContainer>
+                <EmailContainer>{user.email || ""}</EmailContainer>
+                <ThemeContainer>
+                  Dark theme
+                  <Switch
+                    checked={theme.mode === "dark"}
+                    onColor={blueColor}
+                    offColor={grayColor}
+                    checkedIcon={false}
+                    uncheckedIcon={false}
+                    activeBoxShadow=""
+                    height={18}
+                    width={36}
+                    onChange={() => themeToggle.toggle()}
+                  />
+                </ThemeContainer>
+                <NotificationsContainer>
+                  Push notifications
+                  <Switch
+                    checked={true}
+                    onColor={blueColor}
+                    offColor={grayColor}
+                    activeBoxShadow=""
+                    checkedIcon={false}
+                    uncheckedIcon={false}
+                    height={18}
+                    width={36}
+                    onChange={() => themeToggle.toggle()}
+                  />
+                </NotificationsContainer>
+                <LogoutButton onClick={signOut}>Log Out</LogoutButton>
+              </Container>
+            </PoseContent>
+          </Overlay>
+        </PoseOverlay>
+      )}
+    </PoseGroup>
   );
 };
 

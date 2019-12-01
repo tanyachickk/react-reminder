@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Loader from "react-loader";
 import { useHistory } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 import * as LogoImage from "../../assets/images/reminders-logo.png";
 import {
   Container,
@@ -9,9 +8,10 @@ import {
   AppLogo,
   LoadingOverlay
 } from "./LoginPage.styles";
+import { useSession } from "../../context/UserContext";
 
 export const LoginPage = ({ children, loading }) => {
-  const [{ user, isInitialized }] = useAuth();
+  const { user, isInitialized } = useSession();
   const history = useHistory();
 
   useEffect(() => {

@@ -13,13 +13,13 @@ import {
 import { BaseInput } from "../BaseInput";
 import * as DividerImage from "../../assets/images/HR_gradient_dark.png";
 import { ActionButton } from "../ActionButton";
-import { useAuth } from "../../hooks/useAuth";
+import { useSession } from "../../context/UserContext";
 
 export const SignInPage = () => {
   const [email, setEmail] = useState("test@test.com");
   const [password, setPassword] = useState("123456");
   const [isLoading, setIsLoading] = useState(false);
-  const [, { signIn }] = useAuth();
+  const { signIn } = useSession();
 
   const handleSubmit = async e => {
     e.preventDefault();

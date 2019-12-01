@@ -5,7 +5,8 @@ import {
   highlightBackgroundColor,
   borderColor,
   redColor,
-  primaryTextColor
+  primaryTextColor,
+  backgroundColor
 } from "../../constants/theme";
 
 export const DeleteButton = styled.button`
@@ -54,7 +55,7 @@ export const Content = styled.div`
   color: ${props => (props.completed ? secondaryTextColor : primaryTextColor)};
 `;
 
-export const Date = styled.div`
+export const DateTime = styled.div`
   color: ${secondaryTextColor};
   font-size: 12px;
   cursor: pointer;
@@ -83,7 +84,7 @@ export const Container = styled.div`
   align-items: center;
   padding: 0.25rem 0.5rem 0.25rem 1rem;
   background-color: ${props =>
-    props.active ? activeTabBackgroundColor : "transparent"};
+    props.active ? activeTabBackgroundColor : backgroundColor};
 
   &:hover {
     background-color: ${props =>

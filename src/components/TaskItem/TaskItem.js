@@ -8,14 +8,14 @@ import {
   DeleteButton,
   EditButton,
   Content,
-  Date,
+  DateTime,
   ResetDateContainer,
   ResetDateButton
 } from "./TaskItem.styles";
 import { TextInput } from "../TextInput";
 import { BaseCheckbox } from "../BaseCheckbox";
 
-export const TaskItem = ({ task, active }) => {
+export const TaskItem = ({ task }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [currentValue, setCurrentValue] = useState(task.text);
   const deleteButtonRef = useRef();
@@ -52,9 +52,9 @@ export const TaskItem = ({ task, active }) => {
       .collection("tasks")
       .doc(task.id)
       .update({
-        flagged: value
-      })
-      .then(() => {});
+        flagged: value,
+        updated: new Date()
+      });
   };
 
   const setTaskDate = date => {
@@ -65,14 +65,13 @@ export const TaskItem = ({ task, active }) => {
       .doc(task.id)
       .update({
         date
-      })
-      .then(() => {});
+      });
   };
 
   const DateControl = forwardRef(({ value, onClick }, ref) => (
-    <Date ref={ref} onClick={onClick}>
+    <DateTime ref={ref} onClick={onClick}>
       {value}
-    </Date>
+    </DateTime>
   ));
 
   const NewDateControl = forwardRef(({ value, onClick }, ref) => (
@@ -82,7 +81,7 @@ export const TaskItem = ({ task, active }) => {
   ));
 
   return (
-    <Container active={active} onDoubleClick={() => setIsEditMode(true)}>
+    <Container onDoubleClick={() => setIsEditMode(true)}>
       <BaseCheckbox checked={task.flagged} onChange={onFlag} />
       <Content completed={task.flagged}>
         <TextInput
@@ -100,7 +99,7 @@ export const TaskItem = ({ task, active }) => {
             onChange={date => setTaskDate(date)}
             customInput={<DateControl />}
             timeInputLabel="Time:"
-            dateFormat="dd.MM.yyyy hh:mm"
+            dateFormat="dd.MM.yyyy HH:mm"
             showTimeInput
           >
             <ResetDateContainer>
@@ -115,9 +114,9 @@ export const TaskItem = ({ task, active }) => {
         <Controls>
           {!task.date && (
             <DatePicker
-              selected={task.date ? task.date.toDate() : null}
+              selected={task.date ? task.date.toDate() : new Date()}
               onChange={date => setTaskDate(date)}
-              popperPlacement="left-center"
+              popperPlacement="left-start"
               customInput={
                 <NewDateControl
                   ref={editButtonRef}
@@ -125,7 +124,7 @@ export const TaskItem = ({ task, active }) => {
                 />
               }
               timeInputLabel="Time:"
-              dateFormat="dd.MM.yyyy hh:mm"
+              dateFormat="dd.MM.yyyy HH:mm"
               showTimeInput
             >
               <ResetDateContainer>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { Logo } from "../Logo";

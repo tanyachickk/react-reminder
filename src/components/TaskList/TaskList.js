@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { firebase } from "../../firebase";
 import { ScrollToHOC } from "react-scroll-to";
+import { PoseGroup } from "react-pose";
 import { useSession } from "../../context/UserContext";
 import { useTasks } from "../../hooks/useTasks";
 import { collatedTasksExists } from "../../helpers";
@@ -8,6 +9,7 @@ import { useGroups } from "../../hooks/useGroups";
 import { useTranslation } from "react-i18next";
 import { useSelectedGroupValue } from "../../context/SelectedGroupContext";
 import {
+  PoseItem,
   Container,
   PageHeader,
   PageTitle,
@@ -32,9 +34,22 @@ const TaskList = ({ scroll }) => {
   const [isShowCompletedTasks, setIsShowCompletedTasks] = useState(false);
   const { selectedGroup } = useSelectedGroupValue();
   const { user } = useSession();
-  const { tasks, flaggedTasks } = useTasks(user.uid, selectedGroup);
+  const { tasks } = useTasks(user.uid, selectedGroup);
   const { groups } = useGroups(user.uid);
   const listRef = useRef();
+
+  const flaggedTasks =
+    selectedGroup !== "FLAGGED"
+      ? tasks
+          .filter(task => task.flagged)
+          .sort((a, b) => +b.updated.toDate() - +a.updated.toDate())
+      : [];
+  const currentTasks =
+    selectedGroup !== "FLAGGED" ? tasks.filter(task => !task.flagged) : tasks;
+
+  const tasksList = isShowCompletedTasks
+    ? [...flaggedTasks, ...currentTasks]
+    : [...currentTasks];
 
   useEffect(() => {
     const taskCaterory = collatedTasksExists(selectedGroup);
@@ -108,13 +123,13 @@ const TaskList = ({ scroll }) => {
             </FlaggedTasksButton>
           </FlaggedTasksInfo>
         )}
-        {isShowCompletedTasks &&
-          flaggedTasks.map(task => (
-            <TaskItem key={`${task.id}`} task={task}></TaskItem>
+        <PoseGroup>
+          {tasksList.map(task => (
+            <PoseItem key={`${task.id}`}>
+              <TaskItem task={task}></TaskItem>
+            </PoseItem>
           ))}
-        {tasks.map(task => (
-          <TaskItem key={`${task.id}`} task={task}></TaskItem>
-        ))}
+        </PoseGroup>
         {isAllowToCreateTask && (
           <NewTask
             value={newTask}

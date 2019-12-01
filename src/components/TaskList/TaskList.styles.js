@@ -1,10 +1,20 @@
 import styled from "styled-components";
+import posed from "react-pose";
 import {
   borderColor,
   backgroundColor,
   primaryTextColor,
   accentColor
 } from "../../constants/theme";
+
+export const PoseItem = posed.div({
+  flip: {
+    transition: {
+      duration: 300,
+      ease: "linear"
+    }
+  }
+});
 
 export const Container = styled.div`
   display: flex;
@@ -36,11 +46,14 @@ export const PageContent = styled.div`
 `;
 
 export const FlaggedTasksInfo = styled.div`
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   line-height: 3rem;
   border-bottom: 1px solid ${borderColor};
   color: ${primaryTextColor};
+  background-color: ${backgroundColor};
   font-size: 16px;
 `;
 

@@ -5,7 +5,6 @@ import { collatedTasksExists } from "../helpers";
 
 export const useTasks = (userId, selectedGroup) => {
   const [tasks, setTasks] = useState([]);
-  const [flaggedTasks, setFlaggedTasks] = useState([]);
 
   useEffect(() => {
     let unsubscribe = firebase
@@ -67,17 +66,11 @@ export const useTasks = (userId, selectedGroup) => {
           break;
       }
 
-      if (selectedGroup === "FLAGGED") {
-        setTasks(resultTasks);
-        setFlaggedTasks([]);
-      } else {
-        setTasks(resultTasks.filter(task => !task.flagged));
-        setFlaggedTasks(resultTasks.filter(task => !!task.flagged));
-      }
+      setTasks(resultTasks);
     });
 
     return () => unsubscribe();
   }, [selectedGroup, userId]);
 
-  return { tasks, flaggedTasks };
+  return { tasks };
 };

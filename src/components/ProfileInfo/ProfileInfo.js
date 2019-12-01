@@ -1,12 +1,18 @@
 import React from "react";
 import { withTheme } from "styled-components";
-import { Container, Icon, User } from "./ProfileInfo.styles";
+import { Container, User } from "./ProfileInfo.styles";
+import { UserAvatar } from "../UserAvatar";
+import { useSession } from "../../context/UserContext";
 
 const ProfileInfo = () => {
+  const { user } = useSession();
+
+  console.log(user);
+
   return (
     <Container>
-      <Icon>TK</Icon>
-      <User>Tatiana Kurochkina</User>
+      <UserAvatar size={36} name={user.displayName} />
+      <User>{user.displayName || "No Name"}</User>
     </Container>
   );
 };

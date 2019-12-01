@@ -12,7 +12,7 @@ export const contrastColor = theme("mode", {
 
 export const backgroundColor = theme("mode", {
   light: "white",
-  dark: "#1f1f1f"
+  dark: "#111"
 });
 
 export const primaryTextColor = theme("mode", {
@@ -22,7 +22,7 @@ export const primaryTextColor = theme("mode", {
 
 export const secondaryTextColor = theme("mode", {
   light: "#777",
-  dark: "#fff"
+  dark: "#aaa"
 });
 
 export const sidebarBackgroundColor = theme("mode", {
@@ -37,7 +37,7 @@ export const headerBackgroundColor = theme("mode", {
 
 export const borderColor = theme("mode", {
   light: "#d6d6d6",
-  dark: "#d6d6d6"
+  dark: "#3a3a3a"
 });
 
 export const accentColor = theme("mode", {
@@ -47,12 +47,12 @@ export const accentColor = theme("mode", {
 
 export const activeTabBackgroundColor = theme("mode", {
   light: "#ccc",
-  dark: "#ccc"
+  dark: "#555"
 });
 
 export const highlightBackgroundColor = theme("mode", {
   light: "rgba(0,0,0,0.02)",
-  dark: "rgba(0,0,0,0.02)"
+  dark: "rgba(255,255,255,0.02)"
 });
 
 export const shadowColor = theme("mode", {
@@ -73,9 +73,9 @@ export const buttonPrimaryBorderColor = "#07c";
 export const buttonPrimaryHoverBorderColor = "#1482d0";
 export const buttonPrimaryActiveBorderColor = "#006dbc";
 
-export const buttonTextColor = theme("mode", {
-  light: "#eee",
-  dark: "#222"
+export const avatarBackground = theme("mode", {
+  light: "#ccc",
+  dark: "#333"
 });
 
 export const redColor = "#ff3b30";
@@ -87,3 +87,4 @@ export const orangeColor = "#ff9501";
 export const indigoColor = "#5856d6";
 export const greenColor = "#34c759";
 export const blueColor = "#007aff";
+export const grayColor = "#ccc";
