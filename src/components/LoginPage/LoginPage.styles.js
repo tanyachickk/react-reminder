@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { overlayBackgroundColor } from "../../constants/theme";
+import { overlayBackgroundColor, backgroundColor } from "../../constants/theme";
 
 export const Container = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   min-height: 100%;
-  background-color: white;
+  background-color: ${backgroundColor};
 `;
 
 export const AppLogo = styled.img`

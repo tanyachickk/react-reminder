@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { borderColor, accentColor } from "../../constants/theme";
+import {
+  borderColor,
+  accentColor,
+  backgroundColor
+} from "../../constants/theme";
 
 export const Container = styled.div`
   width: 100%;
@@ -13,6 +17,7 @@ export const Input = styled.input`
   border: 1px solid ${borderColor};
   color: inherit;
   background-clip: padding-box;
+  background-color: ${backgroundColor};
   font-size: 1em;
   font-weight: 400;
   line-height: 1.25em;

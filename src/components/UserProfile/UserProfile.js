@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { PoseGroup } from "react-pose";
 import { withTheme } from "styled-components";
-import Switch from "react-switch";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../../context/ThemeContext.js";
 import {
   Container,
   Overlay,
@@ -19,13 +17,12 @@ import {
 } from "./UserProfile.styles";
 import { UserAvatar } from "../UserAvatar";
 import { TextInput } from "../TextInput";
-import { blueColor, grayColor } from "../../constants/theme.js";
 import { useSession } from "../../context/UserContext.js";
 import { LanguageControl } from "../LanguageControl/index.js";
+import { ThemeControl } from "../ThemeControl/index.js";
 
 const UserProfile = ({ theme, isVisible, onClose }) => {
   const { t } = useTranslation();
-  const themeToggle = useTheme();
   const overlayRef = useRef();
   const { user, signOut, updateUsername } = useSession();
   const [currentName, setCurrentName] = useState("");
@@ -80,31 +77,11 @@ const UserProfile = ({ theme, isVisible, onClose }) => {
                 </LanguageContainer>
                 <ThemeContainer>
                   {t("darkThemeLabel")}
-                  <Switch
-                    checked={theme.mode === "dark"}
-                    onColor={blueColor}
-                    offColor={grayColor}
-                    checkedIcon={false}
-                    uncheckedIcon={false}
-                    activeBoxShadow=""
-                    height={18}
-                    width={36}
-                    onChange={() => themeToggle.toggle()}
-                  />
+                  <ThemeControl />
                 </ThemeContainer>
                 <NotificationsContainer>
                   {t("pushNotificationsLabel")}
-                  <Switch
-                    checked={false}
-                    onColor={blueColor}
-                    offColor={grayColor}
-                    activeBoxShadow=""
-                    checkedIcon={false}
-                    uncheckedIcon={false}
-                    height={18}
-                    width={36}
-                    onChange={() => themeToggle.toggle()}
-                  />
+                  <ThemeControl></ThemeControl>
                 </NotificationsContainer>
                 <LogoutButton onClick={signOut}>
                   {t("logoutButton")}
