@@ -2,4 +2,4 @@
 
 This project is available at https://react-reminder.firebaseapp.com/
 
-<img src="./preview/2.png" />
+<img src="./preview/1.png" />
