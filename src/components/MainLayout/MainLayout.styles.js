@@ -19,4 +19,6 @@ export const SidebarWrapper = styled.div`
 export const ContentWrapper = styled.div`
   grid-area: content;
   height: 100%;
+  width: 100%;
+  overflow: hidden;
 `;

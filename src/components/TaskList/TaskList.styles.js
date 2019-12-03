@@ -92,4 +92,8 @@ export const EmptyList = styled.div`
 export const PageTitle = styled.h2`
   font-size: 2rem;
   margin: 0;
+  margin-right: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
